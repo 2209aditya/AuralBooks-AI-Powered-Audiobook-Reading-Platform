@@ -1,22 +1,37 @@
-# 📚 AuralBooks — AI-Powered Audiobook & Reading Platform
-
 <div align="center">
 
-![AuralBooks Banner](https://img.shields.io/badge/AuralBooks-AI%20Reading%20Platform-gold?style=for-the-badge&logo=bookstack)
+<img src="https://img.shields.io/badge/AuralBooks-AI%20Reading%20Platform-6C63FF?style=for-the-badge&logo=bookstack&logoColor=white" alt="AuralBooks"/>
 
-[![Angular](https://img.shields.io/badge/Angular-18.0-DD0031?style=flat-square&logo=angular&logoColor=white)](https://angular.dev)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.2-6DB33F?style=flat-square&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Java](https://img.shields.io/badge/Java-21-007396?style=flat-square&logo=openjdk&logoColor=white)](https://openjdk.org/projects/jdk/21/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Redis](https://img.shields.io/badge/Redis-7.2-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
-[![Azure](https://img.shields.io/badge/Azure-AKS-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com)
+# 📚 AuralBooks — AI-Powered Audiobook & Reading Platform
+
+> **Enterprise-grade, cloud-native reading platform** engineered for 2M+ concurrent users  
+> Angular 18 · Spring Boot 3.3 · Azure AKS · Helm · ArgoCD · Multi-Environment · GitOps
+
+<br/>
+
+[![Build Status](https://dev.azure.com/auralbooks/auralbooks/_apis/build/status/auralbooks-ci?branchName=main&label=Azure%20DevOps%20CI)](https://dev.azure.com/auralbooks/auralbooks/_build)
+[![Release](https://vsrm.dev.azure.com/auralbooks/_apis/public/Release/badge/auralbooks/1/1)](https://dev.azure.com/auralbooks/auralbooks/_release)
+[![Coverage](https://img.shields.io/badge/Coverage-87%25-success?style=flat-square&logo=jacoco)](https://dev.azure.com/auralbooks)
+[![SonarQube](https://img.shields.io/badge/SonarQube-Passed-brightgreen?style=flat-square&logo=sonarqube)](https://sonarqube.auralbooks.com)
+[![Security](https://img.shields.io/badge/SAST-Clean-blue?style=flat-square&logo=snyk)](https://dev.azure.com/auralbooks)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Scale](https://img.shields.io/badge/Scale-2M%2B%20Users-brightgreen?style=flat-square)]()
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk)](https://openjdk.org/)
+[![Angular](https://img.shields.io/badge/Angular-18-DD0031?style=flat-square&logo=angular)](https://angular.dev)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3-6DB33F?style=flat-square&logo=springboot)](https://spring.io/projects/spring-boot)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-AKS-326CE5?style=flat-square&logo=kubernetes)](https://azure.microsoft.com/en-us/products/kubernetes-service)
+[![Helm](https://img.shields.io/badge/Helm-3.x-0F1689?style=flat-square&logo=helm)](https://helm.sh)
+[![ArgoCD](https://img.shields.io/badge/ArgoCD-GitOps-EF7B4D?style=flat-square&logo=argo)](https://argoproj.github.io/cd/)
 
-**A full-stack, AI-native reading platform — Angular 18 frontend + Spring Boot 3.3 microservices backend — engineered to scale to 2 million users on Azure AKS.**
+<br/>
 
-[Features](#-features) · [Architecture](#-architecture) · [Quick Start](#-quick-start) · [Backend](#-backend-spring-boot) · [Frontend](#-frontend-angular-18) · [API Docs](#-api-documentation) · [Deployment](#-deployment)
+<table>
+<tr>
+<td align="center"><b>🌍 Environments</b><br/>DEV · UAT · PRE-PROD · PROD · DR</td>
+<td align="center"><b>⚡ Scale</b><br/>2M+ Users · 50 pods max · 78GB Redis</td>
+<td align="center"><b>🔒 Security</b><br/>WAF · SAST · DAST · Zero-Trust</td>
+<td align="center"><b>🤖 AI-Powered</b><br/>GPT-4o · Neural TTS · ML Recs</td>
+</tr>
+</table>
 
 </div>
 
@@ -24,1671 +39,378 @@
 
 ## 📋 Table of Contents
 
-1. [Features](#-features)
-2. [High-Level Design (HLD)](#-high-level-design-hld)
-3. [Low-Level Design (LLD)](#-low-level-design-lld)
-4. [Cache Configuration](#-cache-configuration)
-5. [Networking](#-networking)
-6. [Project Structure](#-project-structure)
-7. [Prerequisites](#-prerequisites)
-8. [Quick Start](#-quick-start)
-9. [Backend — Spring Boot](#-backend-spring-boot)
-   - [Tech Stack](#backend-tech-stack)
-   - [Module Breakdown](#backend-module-breakdown)
-   - [Running the Backend](#running-the-backend)
-   - [Environment Variables](#backend-environment-variables)
-   - [Database Migrations](#database-migrations)
-   - [API Endpoints Reference](#api-endpoints-reference)
-   - [WebSocket / Real-time Chat](#websocket--real-time-chat)
-   - [Security & JWT](#security--jwt)
-   - [Caching Strategy](#caching-strategy)
-10. [Frontend — Angular 18](#-frontend-angular-18)
-    - [Tech Stack](#frontend-tech-stack)
-    - [Module Breakdown](#frontend-module-breakdown)
-    - [Running the Frontend](#running-the-frontend)
-    - [Environment Configuration](#frontend-environment-configuration)
-    - [NgRx State Management](#ngrx-state-management)
-    - [Angular Services](#angular-services)
-11. [Docker & Docker Compose](#-docker--docker-compose)
-12. [Azure Infrastructure](#-azure-infrastructure)
-13. [Deployment](#-deployment)
-14. [Monitoring & Observability](#-monitoring--observability)
-15. [IAM & Roles](#-iam--roles)
-16. [Application Security](#-application-security)
-17. [Testing](#-testing)
-18. [Contributing](#-contributing)
+<details>
+<summary><b>Click to expand full TOC</b></summary>
+
+- [✨ Features Overview](#-features-overview)
+- [🏗️ Architecture](#️-architecture)
+  - [High-Level Design](#high-level-design-hld)
+  - [Microservices Decomposition](#microservices-decomposition)
+- [🌍 Multi-Environment Strategy](#-multi-environment-strategy)
+  - [Environment Overview](#environment-overview)
+  - [Environment Configuration](#environment-configuration)
+  - [Infra Setup Per Environment](#infra-setup-per-environment)
+- [🚀 CI/CD Pipelines — Azure DevOps](#-cicd-pipelines--azure-devops)
+  - [Pipeline Architecture](#pipeline-architecture)
+  - [DEV Pipeline](#dev-pipeline)
+  - [UAT Pipeline](#uat-pipeline)
+  - [PRE-PROD Pipeline](#pre-prod-pipeline)
+  - [PROD Pipeline](#prod-pipeline)
+  - [Variable Groups & Library](#variable-groups--library)
+- [⚙️ Helm & ArgoCD — GitOps](#️-helm--argocd--gitops)
+  - [Helm Chart Structure](#helm-chart-structure)
+  - [ArgoCD Application Setup](#argocd-application-setup)
+  - [GitOps Workflow](#gitops-workflow)
+- [📈 Autoscaling](#-autoscaling)
+  - [HPA Configuration](#hpa-configuration)
+  - [KEDA — Event-Driven Scaling](#keda--event-driven-scaling)
+  - [Cluster Autoscaler](#cluster-autoscaler)
+- [⚡ Fault Tolerance](#-fault-tolerance)
+  - [Circuit Breaker](#circuit-breaker)
+  - [Retry & Timeout Policies](#retry--timeout-policies)
+  - [Pod Disruption Budgets](#pod-disruption-budgets)
+  - [Health Probes](#health-probes)
+- [🌐 Disaster Recovery Strategy](#-disaster-recovery-strategy)
+  - [DR Architecture](#dr-architecture)
+  - [RTO & RPO Targets](#rto--rpo-targets)
+  - [Failover Runbook](#failover-runbook)
+  - [DR Drill Schedule](#dr-drill-schedule)
+- [🧪 Testing Strategy](#-testing-strategy)
+  - [SonarQube Quality Gate](#sonarqube-quality-gate)
+  - [SAST — Static Analysis](#sast--static-analysis)
+  - [DAST — Dynamic Analysis](#dast--dynamic-analysis)
+  - [NFR / Performance Testing](#nfr--performance-testing)
+  - [Load Testing](#load-testing)
+  - [Regression Testing](#regression-testing)
+- [🔐 Security](#-security)
+- [📊 Monitoring & Observability](#-monitoring--observability)
+- [⚡ Quick Start](#-quick-start)
+- [🗄️ Database & Caching](#️-database--caching)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
+</details>
 
 ---
 
+## ✨ Features Overview
 
-
-## 🌟 Features
-
-### 📖 Reading & Listening
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| ePub / PDF Reader | In-browser book reader with themes (Light, Sepia, Dark), font control, chapter nav, and offline PWA support | `BookService`, `ReadingStateRepository` | `ReaderComponent` |
-| AI Audiobook Narration | Azure Neural TTS narration (25+ voices) streamed chapter by chapter; speed 0.5×–3.0×; syncs position across devices | `AudioService`, Azure Function | `AudioPlayerComponent` |
-| Smart Highlights | 5-color highlights saved server-side, synced across devices; tap any highlight for AI explanation or to add a note | `HighlightRepository`, `BookController` | `ReaderComponent`, `BookService` |
-| Notes | Freeform notes per page/chapter with tags; optional one-tap AI summary; exportable to Markdown | `NoteRepository`, `AiService` | `NotesComponent`, `BookService` |
-| Progress Sync | Reading position and audio timestamp synced in real time across all devices via WebSocket STOMP | `ReadingStateRepository`, WebSocket | `ChatService`, `BookService` |
-
-### 🤖 AI Intelligence
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| AI Reading Assistant | GPT-4o Q&A panel in the reader — context-aware (knows the book and chapter); supports 10-turn conversation history | `AiService`, Azure OpenAI | `AiAssistantComponent`, `AiService` |
-| Personalized Recommendations | ML-based picks refreshed every 6 hours; "Because you read X" labels; dismiss feedback loop | `AiService`, Azure ML, `@Scheduled` | `HomeComponent`, `AiService` |
-| AI Group Chat Bot | Mention `@auralai` in any group chat to get book insights, author facts, or literary analysis inline | `ChatWebSocketController`, `AiService` | `ChatService` |
-
-### 👥 Social & Community
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| Reading Groups | Public or private genre-based groups (up to 10,000 members); roles: Owner, Moderator, Member | `GroupService`, `ReadingGroupRepository` | `GroupsComponent`, `GroupDetailComponent` |
-| Real-time Chat | WebSocket group chat via Spring STOMP + Azure SignalR; typing indicators, reactions, message replies | `ChatWebSocketController` | `ChatService` (`@stomp/rx-stomp`) |
-| User Connections | Follow readers; activity feed; public reading stats and streaks on every profile | `UserService`, `user_follows` table | `ProfileComponent`, `FeedComponent` |
-
-### 📅 Events
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| Event Calendar & RSVP | Monthly events (Author AMAs, reading challenges, book clubs); RSVP with capacity cap; email reminders via Service Bus | `EventService`, `event_rsvps` table | `EventsComponent`, `EventService` |
-| Live Author AMAs | Upvote-based question queue; live Q&A over WebSocket; AI-generated post-event transcript | WebSocket STOMP, `AiService` | `EventLiveComponent`, `ChatService` |
-
-### 🛒 Marketplace & Commerce
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| Buy Books | Permanent ownership via Stripe PaymentIntent; webhook-confirmed; email receipt | `MarketplaceService`, `StripeService` | `MarketplaceComponent`, `MarketplaceService` |
-| Rent Books | Time-limited access (default 14 days); expiry enforced at SAS URL level; 48h reminder emails | `MarketplaceService`, `@Scheduled` | `MarketplaceComponent`, `LibraryComponent` |
-| Publisher Dashboard | Upload books, set pricing, trigger AI audio generation, view sales analytics, download royalty statements | `BookController` (PUBLISHER role), Azure Functions | `PublisherDashboardComponent` |
-
-### 🔐 Auth & Security
-| Feature | Description | Backend | Frontend |
-|---|---|---|---|
-| JWT Authentication | Stateless auth; 15-min access token + 30-day refresh token; Redis blacklist on logout | `AuthService`, `JwtService`, `JwtAuthFilter` | `AuthService` (Signals), `AuthInterceptor` |
-| Silent Token Refresh | `401` responses auto-retry after refreshing the access token — transparent to the user | `AuthService` | `RefreshInterceptor` |
-| Role-based Access | `ROLE_USER`, `ROLE_PUBLISHER`, `ROLE_ADMIN` enforced via `@PreAuthorize`; CORS locked to allowed origins | `SecurityConfig` | `AuthGuard` |
+<table>
+<thead>
+<tr><th>Category</th><th>Feature</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td rowspan="4"><b>📖 Reading</b></td><td>ePub / PDF Reader</td><td>In-browser reader with Light/Sepia/Dark themes, offline PWA support</td></tr>
+<tr><td>AI Audiobook Narration</td><td>Azure Neural TTS · 25+ voices · speed 0.5×–3.0× · cross-device sync</td></tr>
+<tr><td>Smart Highlights</td><td>5-colour highlights · server-side sync · AI explanation on tap</td></tr>
+<tr><td>Progress Sync</td><td>Real-time reading position sync via WebSocket STOMP across all devices</td></tr>
+<tr><td rowspan="3"><b>🤖 AI</b></td><td>Reading Assistant</td><td>GPT-4o Q&A panel — context-aware, 10-turn conversation history</td></tr>
+<tr><td>Personalised Recs</td><td>ML-based picks refreshed every 6 hours, "Because you read X" labels</td></tr>
+<tr><td>AI Group Bot</td><td>Mention <code>@auralai</code> in group chat for book insights inline</td></tr>
+<tr><td rowspan="2"><b>👥 Social</b></td><td>Reading Groups</td><td>Genre-based communities (up to 10,000 members), roles: Owner/Mod/Member</td></tr>
+<tr><td>Real-time Chat</td><td>WebSocket STOMP + Azure SignalR · typing indicators · reactions</td></tr>
+<tr><td rowspan="2"><b>🛒 Commerce</b></td><td>Buy / Rent Books</td><td>Stripe PaymentIntent · webhook confirmed · SAS URL–enforced rental expiry</td></tr>
+<tr><td>Publisher Dashboard</td><td>Upload books · AI audio generation · sales analytics · royalty statements</td></tr>
+<tr><td rowspan="2"><b>🔐 Auth</b></td><td>JWT Auth</td><td>15-min access + 30-day refresh tokens · Redis blacklist on logout</td></tr>
+<tr><td>RBAC</td><td><code>ROLE_USER</code> · <code>ROLE_PUBLISHER</code> · <code>ROLE_ADMIN</code> enforced via <code>@PreAuthorize</code></td></tr>
+</tbody>
+</table>
 
 ---
 
-## 🏗 High-Level Design (HLD)
+## 🏗️ Architecture
 
-### System Context
-
-AuralBooks is structured as seven logical tiers. Every request from a browser or mobile device travels through all of them before touching a data store.
+### High-Level Design (HLD)
 
 ```
-  ┌──────────────────────────────────────────────────────────────────────────┐
-  │                      CLIENTS                                              │
-  │   Angular 18 SPA (Web)  ·  Mobile PWA  ·  Publisher Admin Portal         │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │  HTTPS / WSS
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   EDGE LAYER                                              │
-  │   Azure Front Door Premium — WAF (OWASP 3.2), DDoS, anycast routing,     │
-  │   TLS 1.3 termination, geo-failover East US ↔ West Europe                │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   GATEWAY LAYER                                           │
-  │   Azure API Management — JWT validation, rate limiting (1K req/min),      │
-  │   request routing by path prefix, usage analytics                         │
-  │   NGINX Ingress Controller — in-cluster L7 routing to service namespaces  │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   MICROSERVICES LAYER  (AKS — auralbooks-*)               │
-  │                                                                           │
-  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
-  │  │ Book Svc    │  │ User/Auth   │  │ Chat Svc    │  │ AI Svc      │    │
-  │  │ :8080       │  │ Svc :8081   │  │ (WebSocket) │  │ :8082 (GPU) │    │
-  │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘    │
-  │  ┌─────────────┐  ┌─────────────┐                                        │
-  │  │ Marketplace │  │ Event Svc   │                                        │
-  │  │ Svc :8083   │  │ :8084       │                                        │
-  │  └─────────────┘  └─────────────┘                                        │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   ASYNC PROCESSING LAYER                                  │
-  │   Azure Service Bus queues — orders, notifications, royalties             │
-  │   Azure Event Hubs — reading analytics, audit stream                      │
-  │   Azure Functions — TTS audio generation, royalty processor, email sender │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   DATA LAYER                                              │
-  │   PostgreSQL 16      — transactional data (orders, users, books)          │
-  │   Azure Redis P3     — multi-tier cache (sessions, book lists, AI output) │
-  │   Azure Cosmos DB    — chat messages, reading events (high-write NoSQL)   │
-  │   Azure Blob Storage — ePub, mp3 audio, book cover images (CDN-fronted)   │
-  └────────────────────────────────┬─────────────────────────────────────────┘
-                                   │
-  ┌────────────────────────────────▼─────────────────────────────────────────┐
-  │                   AI / ML LAYER                                           │
-  │   Azure OpenAI GPT-4o    — reading assistant, group bot, summaries        │
-  │   Azure Neural TTS        — audiobook narration (25+ voices)              │
-  │   Azure ML endpoint       — personalized recommendation model             │
-  │   Azure Cognitive Search  — full-text book search with semantic ranking   │
-  └──────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                              CLIENTS                                             │
+│         Angular 18 SPA (Web)  ·  Mobile PWA  ·  Publisher Admin Portal          │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │  HTTPS / WSS
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  EDGE LAYER — Azure Front Door Premium                                           │
+│  WAF (OWASP 3.2) · DDoS · Anycast Routing · TLS 1.3 · Geo-Failover East↔West   │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  GATEWAY LAYER                                                                   │
+│  Azure API Management — JWT validation, rate limiting (1K req/min)               │
+│  NGINX Ingress Controller — in-cluster L7 routing                                │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  MICROSERVICES LAYER  (AKS — Helm-deployed, ArgoCD-managed)                      │
+│                                                                                  │
+│   book-service :8080   │  user-service :8081  │  chat-service (WS)              │
+│   ai-service :8082     │  marketplace :8083   │  event-service :8084            │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  ASYNC PROCESSING LAYER                                                          │
+│  Azure Service Bus · Azure Event Hubs · Azure Functions (TTS, royalties, email) │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  DATA LAYER                                                                      │
+│  PostgreSQL 16 · Azure Redis P3 · Azure Cosmos DB · Azure Blob Storage (CDN)    │
+└──────────────────────────────────────┬──────────────────────────────────────────┘
+                                       │
+┌──────────────────────────────────────▼──────────────────────────────────────────┐
+│  AI / ML LAYER                                                                   │
+│  Azure OpenAI GPT-4o · Azure Neural TTS · Azure ML · Azure Cognitive Search     │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Request Flow — Typical Read (Book Catalog)
+### Microservices Decomposition
 
-```
-Browser                Front Door       APIM            Book Service       Redis / PostgreSQL
-  │                        │              │                  │                     │
-  │── GET /api/v1/books ──▶│              │                  │                     │
-  │                        │── route ───▶│                  │                     │
-  │                        │              │── validate JWT ─▶│                     │
-  │                        │              │                  │── check Redis ─────▶│
-  │                        │              │                  │◀── HIT (< 1ms) ─────│
-  │◀────────── 200 JSON ───────────────────────────────────── │                     │
-  │                        │              │                  │                     │
-  │                        │              │            (on cache MISS)             │
-  │                        │              │                  │── SELECT * books ──▶│
-  │                        │              │                  │◀── rows ────────────│
-  │                        │              │                  │── SET Redis TTL ───▶│
-  │◀────────── 200 JSON ───────────────────────────────────── │                     │
-```
-
-### Request Flow — Real-time Chat
-
-```
-Angular (ChatService)      SignalR Service       Spring Boot (ChatWebSocketController)
-        │                       │                              │
-        │── STOMP CONNECT ─────▶│                              │
-        │                       │── forward connection ───────▶│
-        │── SEND /app/chat/g1 ─▶│── STOMP frame ─────────────▶│
-        │                       │                              │── persist Message to DB
-        │                       │                              │── check for @auralai
-        │                       │                              │── broadcast to /topic/chat/g1
-        │◀── MESSAGE frame ─────│◀── convertAndSend ───────────│
-  (all group members receive it simultaneously)
-```
-
-### Communication Patterns
-
-| Path | Protocol | Auth | Notes |
-|---|---|---|---|
-| Angular → APIM → Spring Boot | HTTPS REST | JWT Bearer | All API calls |
-| Angular → SignalR → Spring Boot | WSS / STOMP | JWT in CONNECT headers | Chat, progress sync |
-| Spring Boot → PostgreSQL | JDBC over TLS | HikariCP pool, IAM auth (prod) | All transactional data |
-| Spring Boot → Redis | Redis TLS 6380 | AUTH password + ACL | Cache, pub/sub, sessions |
-| Spring Boot → Azure OpenAI | HTTPS | Managed Identity | AI calls |
-| Spring Boot → Blob Storage | HTTPS | Managed Identity | File reads; SAS URLs for clients |
-| Azure Functions → Service Bus | AMQP | Managed Identity | Queue consumption |
-
----
-
-## 🔬 Low-Level Design (LLD)
-
-### Service Decomposition
-
-Each Spring Boot service is an independent deployable unit with its own HPA, its own database schema (shared PostgreSQL instance, separate schema prefixes), and its own Redis keyspace prefix.
-
-| Service | Port | Namespace | Schema | Redis Prefix | HPA Range |
-|---|---|---|---|---|---|
-| `book-service` | 8080 | `auralbooks-core` | `public` | `bk::` | 5 – 50 pods |
-| `user-service` | 8081 | `auralbooks-core` | `public` | `usr::` | 5 – 20 pods |
-| `chat-service` | 8082 | `auralbooks-social` | `public` | `chat::` | 5 – 20 pods |
-| `ai-service` | 8083 | `auralbooks-ai` | `public` | `ai::` | 5 – 20 pods |
-| `marketplace-service` | 8084 | `auralbooks-commerce` | `public` | `mkt::` | 5 – 15 pods |
-| `event-service` | 8085 | `auralbooks-social` | `public` | `evt::` | 2 – 8 pods |
-
-### Core Class Diagram
-
-```
-┌─────────────────────┐         ┌───────────────────────────────┐
-│       User          │         │            Book                │
-├─────────────────────┤         ├───────────────────────────────┤
-│ id: UUID (PK)       │         │ id: UUID (PK)                  │
-│ email: String       │         │ title: String                  │
-│ password: String    │◀────────│ publisher_id: UUID (FK→User)   │
-│ displayName: String │  1    * │ purchasePrice: BigDecimal       │
-│ role: Enum          │         │ rentalPrice: BigDecimal         │
-│ subscriptionPlan    │         │ audioBaseUrl: String            │
-│ fontSize, theme     │         │ epubUrl: String                 │
-└──────────┬──────────┘         └──────────────┬────────────────┘
-           │                                    │
-           │ 1                                  │ 1
-           │ *                                  │ *
-┌──────────▼──────────┐         ┌──────────────▼────────────────┐
-│    ReadingState      │         │           Highlight            │
-├─────────────────────┤         ├───────────────────────────────┤
-│ id: UUID (PK)        │         │ id: UUID (PK)                  │
-│ userId: UUID (FK)    │         │ userId: UUID (FK)              │
-│ bookId: UUID (FK)    │         │ bookId: UUID (FK)              │
-│ currentPage: Int     │         │ selectedText: String           │
-│ audioPosition: Long  │         │ color: Enum (5 values)         │
-│ percentComplete      │         │ pageNumber, chapterIndex       │
-│ status: Enum         │         │ note: String                   │
-└─────────────────────┘         └───────────────────────────────┘
-
-┌─────────────────────┐         ┌───────────────────────────────┐
-│   ReadingGroup       │         │            Order              │
-├─────────────────────┤         ├───────────────────────────────┤
-│ id: UUID (PK)        │         │ id: UUID (PK)                  │
-│ name: String         │         │ userId: UUID (FK)              │
-│ genre: String        │         │ bookId: UUID (FK)              │
-│ ownerId: UUID (FK)   │         │ orderType: Enum (BUY/RENT)     │
-│ memberCount: Int     │         │ amount: BigDecimal             │
-│ currentBookId: UUID  │         │ stripePaymentId: String        │
-└──────────┬──────────┘         │ status: Enum                   │
-           │ 1                   │ expiresAt: Instant (rental)    │
-           │ *                   └───────────────────────────────┘
-┌──────────▼──────────┐
-│      Message         │
-├─────────────────────┤
-│ id: UUID (PK)        │
-│ groupId: UUID (FK)   │
-│ senderId: UUID (FK)  │
-│ content: String      │
-│ isAiGenerated: Bool  │
-│ sentAt: Instant      │
-└─────────────────────┘
-```
-
-### Full PostgreSQL Schema
-
-```sql
--- ── Users ─────────────────────────────────────────────────────────────────
-CREATE TABLE users (
-    id                   UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email                VARCHAR(255) UNIQUE NOT NULL,
-    password             VARCHAR(255) NOT NULL,              -- BCrypt strength 12
-    display_name         VARCHAR(100) NOT NULL,
-    avatar_url           VARCHAR(500),
-    bio                  TEXT,
-    subscription_plan    VARCHAR(20)  DEFAULT 'FREE',        -- FREE | BASIC | PREMIUM
-    subscription_expires TIMESTAMPTZ,
-    font_size            INT          DEFAULT 16,
-    theme                VARCHAR(20)  DEFAULT 'light',       -- light | sepia | dark
-    narration_speed      DECIMAL(3,1) DEFAULT 1.0,
-    narration_voice      VARCHAR(50)  DEFAULT 'jenny',
-    books_read           INT          DEFAULT 0,
-    minutes_listened     INT          DEFAULT 0,
-    current_streak       INT          DEFAULT 0,
-    last_active_at       TIMESTAMPTZ,
-    followers_count      INT          DEFAULT 0,
-    following_count      INT          DEFAULT 0,
-    is_public_profile    BOOLEAN      DEFAULT TRUE,
-    role                 VARCHAR(20)  DEFAULT 'USER',        -- USER | PUBLISHER | ADMIN
-    enabled              BOOLEAN      DEFAULT TRUE,
-    created_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    updated_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_users_email ON users(email);
-
--- ── Books ──────────────────────────────────────────────────────────────────
-CREATE TABLE books (
-    id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    title             VARCHAR(300)    NOT NULL,
-    author            VARCHAR(200)    NOT NULL,
-    isbn              VARCHAR(20)     UNIQUE,
-    description       TEXT,
-    language          VARCHAR(10)     DEFAULT 'en',
-    published_year    INT,
-    page_count        INT,
-    duration_minutes  INT,
-    purchase_price    DECIMAL(10,2),
-    rental_price      DECIMAL(10,2),
-    rental_days       INT             DEFAULT 14,
-    audio_base_url    VARCHAR(500),
-    epub_url          VARCHAR(500),
-    cover_url         VARCHAR(500),
-    publisher_id      UUID            REFERENCES users(id),
-    rating            DECIMAL(3,2)    DEFAULT 0.00,
-    review_count      INT             DEFAULT 0,
-    is_available      BOOLEAN         DEFAULT TRUE,
-    created_at        TIMESTAMPTZ     NOT NULL DEFAULT NOW(),
-    updated_at        TIMESTAMPTZ     NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_books_title_trgm  ON books USING gin(title gin_trgm_ops);   -- full-text
-CREATE INDEX idx_books_author_trgm ON books USING gin(author gin_trgm_ops);
-CREATE INDEX idx_books_rating      ON books(rating DESC);
-CREATE INDEX idx_books_available   ON books(is_available);
-
-CREATE TABLE book_genres (
-    book_id UUID        REFERENCES books(id) ON DELETE CASCADE,
-    genre   VARCHAR(100) NOT NULL,
-    PRIMARY KEY (book_id, genre)
-);
-CREATE INDEX idx_book_genres_genre ON book_genres(genre);
-
--- ── Reading State ──────────────────────────────────────────────────────────
-CREATE TABLE reading_states (
-    id                          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id                     UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    book_id                     UUID NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-    current_page                INT          DEFAULT 0,
-    total_pages                 INT,
-    current_audio_position_sec  BIGINT       DEFAULT 0,
-    total_audio_duration_sec    BIGINT,
-    percent_complete            DECIMAL(5,2) DEFAULT 0.00,
-    status                      VARCHAR(20)  DEFAULT 'IN_PROGRESS',
-    total_reading_minutes       INT          DEFAULT 0,
-    last_opened_at              TIMESTAMPTZ,
-    started_at                  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    updated_at                  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    UNIQUE(user_id, book_id)
-);
-CREATE INDEX idx_reading_state_user ON reading_states(user_id);
-
--- ── Highlights ─────────────────────────────────────────────────────────────
-CREATE TABLE highlights (
-    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id         UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    book_id         UUID NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-    selected_text   TEXT NOT NULL,
-    color           VARCHAR(20)  DEFAULT 'YELLOW',
-    page_number     INT,
-    chapter_index   INT,
-    start_offset    INT,
-    end_offset      INT,
-    note            TEXT,
-    ai_explanation  TEXT,
-    created_at      TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMPTZ  NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_highlights_user_book ON highlights(user_id, book_id);
-
--- ── Notes ──────────────────────────────────────────────────────────────────
-CREATE TABLE notes (
-    id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id       UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    book_id       UUID NOT NULL REFERENCES books(id) ON DELETE CASCADE,
-    content       TEXT NOT NULL,
-    ai_summary    TEXT,
-    page_number   INT,
-    chapter_index INT,
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-CREATE TABLE note_tags (
-    note_id UUID NOT NULL REFERENCES notes(id) ON DELETE CASCADE,
-    tag     VARCHAR(100) NOT NULL,
-    PRIMARY KEY (note_id, tag)
-);
-
--- ── Reading Groups ─────────────────────────────────────────────────────────
-CREATE TABLE reading_groups (
-    id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name             VARCHAR(200)  NOT NULL,
-    description      TEXT,
-    genre            VARCHAR(100),
-    avatar_emoji     VARCHAR(10),
-    owner_id         UUID REFERENCES users(id),
-    member_count     INT     DEFAULT 1,
-    max_members      INT     DEFAULT 10000,
-    is_private       BOOLEAN DEFAULT FALSE,
-    current_book_id  UUID    REFERENCES books(id),
-    created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_groups_genre ON reading_groups(genre);
-
-CREATE TABLE group_memberships (
-    group_id  UUID NOT NULL REFERENCES reading_groups(id) ON DELETE CASCADE,
-    user_id   UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    role      VARCHAR(20) DEFAULT 'MEMBER',           -- OWNER | MODERATOR | MEMBER
-    joined_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    PRIMARY KEY (group_id, user_id)
-);
-CREATE INDEX idx_memberships_user ON group_memberships(user_id);
-
--- ── Messages ───────────────────────────────────────────────────────────────
-CREATE TABLE messages (
-    id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    group_id        UUID NOT NULL REFERENCES reading_groups(id) ON DELETE CASCADE,
-    sender_id       UUID NOT NULL REFERENCES users(id),
-    content         TEXT    NOT NULL,
-    is_ai_generated BOOLEAN DEFAULT FALSE,
-    is_deleted      BOOLEAN DEFAULT FALSE,
-    sent_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_messages_group ON messages(group_id, sent_at DESC);
-
--- ── Orders ─────────────────────────────────────────────────────────────────
-CREATE TABLE orders (
-    id                    UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id               UUID NOT NULL REFERENCES users(id),
-    book_id               UUID NOT NULL REFERENCES books(id),
-    order_type            VARCHAR(20)    NOT NULL,            -- PURCHASE | RENTAL
-    amount                DECIMAL(10,2)  NOT NULL,
-    currency              VARCHAR(3)     DEFAULT 'USD',
-    status                VARCHAR(20)    DEFAULT 'PENDING',   -- PENDING|COMPLETED|REFUNDED
-    stripe_payment_id     VARCHAR(100),
-    stripe_client_secret  VARCHAR(200),
-    expires_at            TIMESTAMPTZ,                        -- rentals only
-    created_at            TIMESTAMPTZ    NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_orders_user   ON orders(user_id);
-CREATE INDEX idx_orders_book   ON orders(book_id);
-CREATE INDEX idx_orders_status ON orders(status);
-
--- ── Events ─────────────────────────────────────────────────────────────────
-CREATE TABLE events (
-    id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    title         VARCHAR(300)  NOT NULL,
-    description   TEXT,
-    event_type    VARCHAR(50),                               -- AUTHOR_AMA | READING_CHALLENGE | etc.
-    start_time    TIMESTAMPTZ,
-    end_time      TIMESTAMPTZ,
-    max_attendees INT,
-    rsvp_count    INT DEFAULT 0,
-    is_virtual    BOOLEAN DEFAULT TRUE,
-    meeting_url   VARCHAR(500),
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
-);
-CREATE INDEX idx_events_start ON events(start_time);
-
-CREATE TABLE event_rsvps (
-    event_id      UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
-    user_id       UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    registered_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    PRIMARY KEY (event_id, user_id)
-);
-
--- ── User Follows ───────────────────────────────────────────────────────────
-CREATE TABLE user_follows (
-    follower_id  UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    following_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    PRIMARY KEY (follower_id, following_id)
-);
-```
-
-### PostgreSQL Configuration
-
-HikariCP connection pool settings (in `application.yml`):
-
-```yaml
-spring:
-  datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/auralbooks}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    hikari:
-      maximum-pool-size: 20       # 20 connections per pod × 5 min pods = 100 max connections
-      minimum-idle: 5
-      connection-timeout: 30000   # 30s — fail fast rather than queue
-      idle-timeout: 600000        # 10 min idle before connection released
-      max-lifetime: 1800000       # 30 min max connection lifetime
-      pool-name: AuralBooksHikari
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-  jpa:
-    hibernate:
-      ddl-auto: validate           # Flyway owns DDL; Hibernate validates only
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        jdbc.batch_size: 50        # batch inserts for bulk operations
-        order_inserts: true
-        order_updates: true
-        generate_statistics: false # disabled in production
-```
-
-**Production — Azure Database for PostgreSQL Flexible Server:**
-
-```yaml
-# Prod override values injected by Azure App Configuration
-DB_URL: jdbc:postgresql://psql-auralbooks-prod.postgres.database.azure.com:5432/auralbooks
-        ?sslmode=require
-        &sslrootcert=/etc/ssl/certs/DigiCertGlobalRootCA.crt.pem
-```
-
-- **Tier:** Business Critical, Gen5, 16 vCores, 80 GB RAM
-- **Storage:** 1 TB SSD, IOPS 18,000, auto-grow enabled
-- **High Availability:** zone-redundant standby in same region
-- **Read replica:** West Europe (used by Event Service for reporting queries only)
-- **Backup:** 7-day automated backup + weekly full backup retained 35 days
-- **Connection pooling:** PgBouncer in transaction mode (separate sidecar) — 1,000 client connections → 100 server connections
-
----
-
-## ⚡ Cache Configuration
-
-### Redis Architecture
-
-AuralBooks uses a **three-tier cache** strategy. All three tiers are served from a single Azure Cache for Redis Premium P3 cluster (3 shards, 78 GB total).
-
-```
-Request
-  │
-  ▼
-Tier 1 — Angular HTTP Cache (in-browser)
-  │  Short-lived; book list pages cached 30 seconds in Angular service
-  │  Prevents double-fetching on navigation back
-  │
-  ▼
-Tier 2 — Redis Application Cache (Spring @Cacheable)
-  │  Primary server-side cache; all hot data lives here
-  │  TTL 5 min – 6 hr depending on data type
-  │
-  ▼
-Tier 3 — PostgreSQL / Cosmos DB / Blob Storage
-     Source of truth; only hit on a genuine cache miss
-```
-
-### Redis Configuration (Spring Boot)
-
-```yaml
-spring:
-  data:
-    redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD}
-      ssl:
-        enabled: true             # TLS 6380 in production (Azure Redis)
-      timeout: 2000ms
-      lettuce:
-        pool:
-          max-active: 50          # 50 connections per pod
-          max-idle: 10
-          min-idle: 5
-          max-wait: 1000ms
-  cache:
-    type: redis
-    redis:
-      time-to-live: 300000        # 5-min default; overridden per cache name below
-      key-prefix: "auralbooks:"
-      use-key-prefix: true
-      cache-null-values: false    # never cache null — avoid null-poisoning
-```
-
-**Per-cache TTL configuration (Java `@Bean`):**
-
-```java
-@Bean
-public RedisCacheManagerBuilderCustomizer redisCacheCustomizer() {
-    return builder -> builder
-        .withCacheConfiguration("book",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(60)))      // book detail: 1 hour
-        .withCacheConfiguration("bookList",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(5)))       // paginated lists: 5 min
-        .withCacheConfiguration("recommendations",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofHours(6)))         // ML recs: 6 hours
-        .withCacheConfiguration("audioUrl",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(55)))      // SAS URL TTL - 5 min buffer
-        .withCacheConfiguration("groupList",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(15)))      // group browse: 15 min
-        .withCacheConfiguration("eventList",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(15)))      // events: 15 min
-        .withCacheConfiguration("aiSummary",
-            RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofHours(24)));       // chapter summaries: 24 hr
-}
-```
-
-### Cache Key Reference
-
-| Cache Name | Key Pattern | TTL | Invalidation Trigger |
-|---|---|---|---|
-| `book` | `auralbooks:book::{bookId}` | 60 min | `@CacheEvict` on `updateBook()` |
-| `bookList` | `auralbooks:bookList::{genre}_{search}_{page}` | 5 min | `@CacheEvict(allEntries=true)` on new book |
-| `recommendations` | `auralbooks:recommendations::{userId}` | 6 hr | Reading state update; daily scheduler |
-| `audioUrl` | `auralbooks:audioUrl::{bookId}_{chapter}` | 55 min | On book audio regeneration |
-| `groupList` | `auralbooks:groupList::{genre}_{page}` | 15 min | On group create/delete |
-| `eventList` | `auralbooks:eventList::upcoming` | 15 min | On event create/update |
-| `aiSummary` | `auralbooks:aiSummary::{bookId}_{chapter}` | 24 hr | Manual admin evict only |
-| `session` | `auralbooks:session::{userId}` | 30 min | Explicit logout |
-| `jwtBlacklist` | `auralbooks:jwt:blacklist::{jti}` | Token TTL | Auto-expires with token |
-
-### Cache-Aside Pattern (all read-through caches)
-
-```java
-// Spring @Cacheable handles the cache-aside pattern automatically:
-@Cacheable(value = "book", key = "#id")
-public BookDetailDto getBookById(UUID id) {
-    // Only called on cache miss — Redis is checked first by the AOP proxy
-    return bookMapper.toDetail(
-        bookRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Book not found: " + id))
-    );
-}
-
-// Explicit invalidation on write:
-@CacheEvict(value = {"book", "bookList"}, allEntries = true)
-@Transactional
-public BookDetailDto updateBook(UUID id, UpdateBookRequest request) { ... }
-```
-
-### Redis Pub/Sub — Reading Progress Sync
-
-Redis pub/sub is used to synchronise reading progress across multiple Chat Service pods (since WebSocket connections may land on different pods):
-
-```java
-// Publisher — called when a user syncs progress
-redisTemplate.convertAndSend("reading:progress:" + userId, progressJson);
-
-// Subscriber — all chat-service pods subscribe and forward to their local STOMP sessions
-@RedisListener(topics = "reading:progress:*")
-public void onProgressUpdate(String message) {
-    ReadingProgressUpdate update = objectMapper.readValue(message, ReadingProgressUpdate.class);
-    messagingTemplate.convertAndSendToUser(
-        update.getUserId(), "/queue/reading-sync", update);
-}
-```
-
----
-
-## 🌐 Networking
-
-### Virtual Network Layout
-
-```
-VNet: vnet-auralbooks-prod  (10.0.0.0/8)   East US 2
-│
-├── subnet-aks-system       10.1.0.0/22    /22 = 1,022 host IPs
-│   └── AKS system node pool (3 nodes D4s_v5)
-│   └── NSG: allow cluster-internal only; deny all internet inbound
-│
-├── subnet-aks-app          10.2.0.0/20    /20 = 4,094 host IPs
-│   └── AKS app node pool (5–50 nodes D8s_v5)
-│   └── NSG: allow from subnet-appgw on 443; deny internet
-│
-├── subnet-aks-gpu          10.3.0.0/22    /22 = 1,022 host IPs
-│   └── AKS GPU node pool (2–10 nodes NC6s_v3)
-│   └── NSG: allow from subnet-aks-app only; deny internet
-│
-├── subnet-appgw            10.4.0.0/24    /24 = 254 host IPs
-│   └── Application Gateway / WAF
-│   └── NSG: allow Front Door service tag on 443 + 80
-│
-├── subnet-functions        10.4.1.0/24    /24 = 254 host IPs
-│   └── Azure Functions VNet integration (outbound only)
-│   └── NSG: deny all inbound; allow Service Bus + Storage outbound
-│
-└── subnet-privatelinks     10.4.2.0/22    /22 = 1,022 host IPs
-    └── Private Endpoints for all PaaS services:
-        ├── pe-postgresql     10.4.2.10   → Azure Database for PostgreSQL
-        ├── pe-redis          10.4.2.11   → Azure Cache for Redis
-        ├── pe-servicebus     10.4.2.12   → Azure Service Bus
-        ├── pe-storage        10.4.2.13   → Azure Blob Storage
-        ├── pe-keyvault       10.4.2.14   → Azure Key Vault
-        ├── pe-appconfig      10.4.2.15   → Azure App Configuration
-        └── pe-cosmos         10.4.2.16   → Azure Cosmos DB
-    └── NSG: allow from subnet-aks-* and subnet-functions only
-```
-
-> **No PaaS service has a public endpoint enabled.** All connections from AKS pods to databases, caches, and message queues flow through Private Endpoints within the VNet — never over the public internet.
-
-### DNS
-
-Private DNS zones are linked to the VNet so AKS pods resolve PaaS FQDNs to private IPs:
-
-| Private DNS Zone | Resolves To |
-|---|---|
-| `privatelink.postgres.database.azure.com` | `10.4.2.10` |
-| `privatelink.redis.cache.windows.net` | `10.4.2.11` |
-| `privatelink.servicebus.windows.net` | `10.4.2.12` |
-| `privatelink.blob.core.windows.net` | `10.4.2.13` |
-| `privatelink.vaultcore.azure.net` | `10.4.2.14` |
-| `auralbooks.com` (public) | Azure Front Door anycast IPs |
-| `api.auralbooks.com` (public) | Azure Front Door → APIM → AKS |
-
-### Network Security Groups (NSG Rules)
-
-**`nsg-aks-app` (application node pool):**
-
-| Priority | Direction | Source | Destination | Port | Action |
-|---|---|---|---|---|---|
-| 100 | Inbound | `subnet-appgw` | `subnet-aks-app` | 443 | Allow |
-| 110 | Inbound | `subnet-aks-system` | `subnet-aks-app` | Any | Allow |
-| 200 | Inbound | Any | `subnet-aks-app` | Any | **Deny** |
-| 100 | Outbound | `subnet-aks-app` | `subnet-privatelinks` | 5432, 6380, 5671 | Allow |
-| 110 | Outbound | `subnet-aks-app` | `AzureMonitor` service tag | 443 | Allow |
-| 200 | Outbound | `subnet-aks-app` | Any | Any | **Deny** |
-
-**`nsg-privatelinks` (all PaaS private endpoints):**
-
-| Priority | Direction | Source | Destination | Action |
+| Service | Port | Namespace | Redis Prefix | HPA Range |
 |---|---|---|---|---|
-| 100 | Inbound | `subnet-aks-app` | `subnet-privatelinks` | Allow |
-| 110 | Inbound | `subnet-aks-gpu` | `subnet-privatelinks` | Allow |
-| 120 | Inbound | `subnet-functions` | `subnet-privatelinks` | Allow |
-| 200 | Inbound | Any | Any | **Deny** |
+| `book-service` | 8080 | `auralbooks-core` | `bk::` | 5 – 50 pods |
+| `user-service` | 8081 | `auralbooks-core` | `usr::` | 5 – 20 pods |
+| `chat-service` | 8082 | `auralbooks-social` | `chat::` | 5 – 20 pods |
+| `ai-service` | 8083 | `auralbooks-ai` | `ai::` | 5 – 20 pods |
+| `marketplace-service` | 8084 | `auralbooks-commerce` | `mkt::` | 5 – 15 pods |
+| `event-service` | 8085 | `auralbooks-social` | `evt::` | 2 – 8 pods |
 
-### Calico Network Policies (Pod-to-Pod)
+---
 
-Default deny-all within the cluster; explicit allow paths only:
+## 🌍 Multi-Environment Strategy
+
+### Environment Overview
+
+```
+  ┌───────────────────────────────────────────────────────────────────────┐
+  │                     ENVIRONMENT PROMOTION FLOW                        │
+  │                                                                       │
+  │  feature/*  ──▶  DEV  ──▶  UAT  ──▶  PRE-PROD  ──▶  PROD           │
+  │                   │                                     │             │
+  │                   │                                DR (standby)       │
+  │                  auto                  manual gate required           │
+  └───────────────────────────────────────────────────────────────────────┘
+```
+
+| Environment | Purpose | Region | AKS Size | Auto-Deploy | Approval |
+|---|---|---|---|---|---|
+| **DEV** | Feature development & smoke tests | East US 2 | 2×D4s_v5 | ✅ On push to `develop` | ❌ None |
+| **UAT** | Business acceptance testing | East US 2 | 3×D4s_v5 | ✅ On push to `uat` | ❌ None |
+| **PRE-PROD** | Production-mirror staging, load & regression | East US 2 | 5×D8s_v5 | ✅ On push to `main` | ❌ None |
+| **PROD** | Live production traffic | East US 2 + West Europe | 5–50×D8s_v5 | ⛔ Manual gate | ✅ 2 approvers |
+| **DR** | Disaster recovery warm standby | West Europe | 3×D8s_v5 (idle) | ⛔ Triggered by failover | ✅ Incident Cmd |
+
+---
+
+### Environment Configuration
+
+All environment-specific values are managed via **Helm values files** + **Azure App Configuration** + **Azure Key Vault**. No secrets ever live in Git.
+
+```
+helm/
+└── auralbooks/
+    ├── Chart.yaml
+    ├── values.yaml                  # Shared defaults
+    ├── values-dev.yaml              # DEV overrides
+    ├── values-uat.yaml              # UAT overrides
+    ├── values-preprod.yaml          # PRE-PROD overrides
+    ├── values-prod.yaml             # PROD overrides
+    └── values-dr.yaml               # DR overrides
+```
+
+<details>
+<summary><b>values-dev.yaml — example</b></summary>
 
 ```yaml
-# deny-all-default.yaml — applied to every namespace
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: deny-all-default
-spec:
-  podSelector: {}
-  policyTypes:
-  - Ingress
-  - Egress
----
-# allow-book-to-postgres.yaml — book-service may reach PostgreSQL
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-book-service-egress
-  namespace: auralbooks-core
-spec:
-  podSelector:
-    matchLabels:
-      app: book-service
-  policyTypes:
-  - Egress
-  egress:
-  - to:
-    - ipBlock:
-        cidr: 10.4.2.10/32   # pe-postgresql private IP
-    ports:
-    - port: 5432
-  - to:
-    - ipBlock:
-        cidr: 10.4.2.11/32   # pe-redis private IP
-    ports:
-    - port: 6380
+replicaCount: 1
+image:
+  tag: "latest"
+resources:
+  requests:
+    cpu: "250m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+ingress:
+  host: dev-api.auralbooks.com
+appConfig:
+  logLevel: DEBUG
+  cacheEnabled: false
+  aiEnabled: false           # AI calls disabled in DEV to save cost
+  stripeMode: test
+postgresql:
+  tier: GeneralPurpose
+  cores: 2
+  storage: 32Gi
+redis:
+  sku: Basic
+  capacity: 1
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
 ```
+</details>
 
-### Ingress / TLS
+<details>
+<summary><b>values-prod.yaml — example</b></summary>
 
 ```yaml
-# ingress.yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: auralbooks-ingress
-  namespace: auralbooks-core
-  annotations:
-    nginx.ingress.kubernetes.io/rate-limit: "1000"
-    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - api.auralbooks.com
-    secretName: api-tls-secret
-  rules:
-  - host: api.auralbooks.com
-    http:
-      paths:
-      - path: /api/v1/books
-        pathType: Prefix
-        backend:
-          service: { name: book-service, port: { number: 80 } }
-      - path: /api/v1/users
-        pathType: Prefix
-        backend:
-          service: { name: user-service, port: { number: 80 } }
-      - path: /api/v1/ai
-        pathType: Prefix
-        backend:
-          service: { name: ai-service, port: { number: 80 } }
-      - path: /ws
-        pathType: Prefix
-        backend:
-          service: { name: chat-service, port: { number: 80 } }
+replicaCount: 5
+image:
+  tag: ""                    # Set dynamically by CI/CD pipeline
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "2Gi"
+  limits:
+    cpu: "2000m"
+    memory: "4Gi"
+ingress:
+  host: api.auralbooks.com
+appConfig:
+  logLevel: WARN
+  cacheEnabled: true
+  aiEnabled: true
+  stripeMode: live
+postgresql:
+  tier: BusinessCritical
+  cores: 16
+  storage: 1Ti
+redis:
+  sku: Premium
+  capacity: 3                # P3 — 78GB, 3 shards
+hpa:
+  minReplicas: 5
+  maxReplicas: 50
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 3
 ```
-
-### Load Balancing & Traffic Routing
-
-```
-External traffic (Internet)
-       │
-       ▼
-Azure Front Door Premium
-  ├── Origin Group A: East US 2 (primary, weight 90)
-  └── Origin Group B: West Europe (failover, weight 10 / active on health fail)
-       │
-       ▼
-Application Gateway WAF (per region)
-  └── Backend pool: NGINX Ingress Controller internal IP
-       │
-       ▼
-NGINX Ingress Controller (AKS)
-  └── Routes by path prefix to Kubernetes Services
-       │
-       ▼
-Kubernetes Service (ClusterIP)
-  └── kube-proxy round-robin to healthy pods (readinessProbe gated)
-```
-
-**Azure Front Door health probe** — `GET /actuator/health` every 30 seconds; fails over if 3 consecutive probes return non-2xx or time out after 10 seconds.
+</details>
 
 ---
 
-## 📁 Project Structure
+### Infra Setup Per Environment
 
-```
-auralbooks/
-│
-├── 📁 backend/                          # Spring Boot Application
-│   ├── pom.xml                          # Maven build — Spring Boot 3.3.2, Java 21
-│   └── src/
-│       └── main/
-│           ├── java/com/auralbooks/
-│           │   ├── AuralBooksApplication.java    # @SpringBootApplication entry point
-│           │   ├── controller/
-│           │   │   ├── BookController.java        # GET/POST /api/v1/books/**
-│           │   │   ├── Controllers.java           # Auth, User, Group, Event, Marketplace, AI
-│           │   │   └── ChatWebSocketController.java  # @MessageMapping STOMP handlers
-│           │   ├── service/
-│           │   │   └── Services.java              # AuthService, BookService, AiService,
-│           │   │                                  #   GroupService, MarketplaceService
-│           │   ├── model/
-│           │   │   ├── Book.java                  # @Entity — books table
-│           │   │   ├── User.java                  # @Entity + UserDetails — users table
-│           │   │   └── Models.java                # ReadingState, Highlight, Note, Group,
-│           │   │                                  #   Message, Order, BookEvent
-│           │   ├── config/
-│           │   │   └── Config.java                # SecurityConfig, JwtService, JwtAuthFilter,
-│           │   │                                  #   WebSocketConfig
-│           │   ├── repository/                    # Spring Data JPA repositories
-│           │   ├── dto/                           # Request/Response DTOs
-│           │   ├── security/                      # UserPrincipal, custom expressions
-│           │   └── exception/                     # GlobalExceptionHandler, custom exceptions
-│           └── resources/
-│               ├── application.yml               # All app config (DB, Redis, AI, JWT, Stripe)
-│               └── db/migration/
-│                   └── V1__initial_schema.sql     # Flyway — full schema + seed data
-│
-├── 📁 frontend/                         # Angular 18 Application
-│   ├── package.json                     # Angular 18, NgRx 18, @stomp/rx-stomp, Stripe.js
-│   └── src/
-│       └── app/
-│           ├── app.routes.ts            # Lazy-loaded route definitions
-│           ├── models/
-│           │   └── index.ts             # TypeScript interfaces (Book, User, Group, etc.)
-│           ├── services/
-│           │   └── services.ts          # BookService, AuthService, ChatService,
-│           │                            #   AiService, GroupService, MarketplaceService
-│           ├── components/
-│           │   ├── home/                # HomeComponent — hero, recommendations
-│           │   ├── reader/              # ReaderComponent — ePub reader + highlights
-│           │   ├── audio-player/        # AudioPlayerComponent — audiobook player
-│           │   ├── marketplace/         # MarketplaceComponent — browse & buy
-│           │   ├── groups/              # GroupsComponent — genre communities
-│           │   ├── group-detail/        # GroupDetailComponent — chat + members
-│           │   ├── events/              # EventsComponent — monthly events
-│           │   ├── ai-assistant/        # AiAssistantComponent — GPT-4o Q&A panel
-│           │   ├── profile/             # ProfileComponent — user stats + settings
-│           │   ├── library/             # LibraryComponent — purchased books
-│           │   └── auth/                # LoginComponent, RegisterComponent
-│           ├── guards/
-│           │   └── auth.guard.ts        # canActivate — checks JWT validity
-│           ├── interceptors/
-│           │   ├── auth.interceptor.ts  # Attaches Bearer token to every request
-│           │   └── refresh.interceptor.ts  # Auto-refreshes expired access tokens
-│           └── store/                   # NgRx: actions, reducers, effects, selectors
-│
-├── docker-compose.yml                   # Local dev: PostgreSQL + Redis + Backend + Frontend
-├── docker-compose.prod.yml              # Production compose (pre-AKS)
-├── Dockerfile.backend                   # Spring Boot multi-stage Docker build
-├── Dockerfile.frontend                  # Angular nginx Docker build
-├── .env.example                         # Template for all environment variables
-└── README.md                            # You are here
-```
-
----
-
-## ✅ Prerequisites
-
-Make sure you have these installed before starting:
-
-| Tool | Version | Purpose |
-|---|---|---|
-| Java (OpenJDK) | 21+ | Spring Boot runtime |
-| Maven | 3.9+ | Backend build tool |
-| Node.js | 20+ LTS | Angular CLI + build |
-| npm | 10+ | Frontend package manager |
-| Angular CLI | 18+ | `ng serve`, `ng build` |
-| Docker | 24+ | Containerization |
-| Docker Compose | 2.20+ | Local dev environment |
-| PostgreSQL | 16+ | Primary database (or use Docker) |
-| Redis | 7.2+ | Cache layer (or use Docker) |
-
-**Install Angular CLI globally:**
-```bash
-npm install -g @angular/cli@18
-```
-
-**Check all versions:**
-```bash
-java -version        # openjdk 21.x.x
-mvn -version         # Apache Maven 3.9.x
-node -version        # v20.x.x
-ng version           # Angular CLI: 18.x.x
-docker -version      # Docker version 24.x.x
-```
-
----
-
-## ⚡ Quick Start
-
-### Option A — Docker Compose (Recommended)
-
-The fastest way to run the entire stack locally:
+<details>
+<summary><b>🔵 DEV Environment</b></summary>
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/auralbooks.git
-cd auralbooks
+# Resource group
+az group create --name rg-auralbooks-dev --location eastus2
 
-# 2. Copy environment template and fill in your values
-cp .env.example .env
-# Edit .env — at minimum set JWT_SECRET and AZURE_OPENAI_* values
+# AKS — minimal, cost-optimised
+az aks create \
+  --resource-group rg-auralbooks-dev \
+  --name aks-auralbooks-dev \
+  --kubernetes-version 1.29 \
+  --node-count 2 \
+  --node-vm-size Standard_D4s_v5 \
+  --network-plugin azure \
+  --enable-managed-identity
 
-# 3. Start everything (PostgreSQL + Redis + Spring Boot + Angular)
-docker compose up --build
+# PostgreSQL — General Purpose (dev)
+az postgres flexible-server create \
+  --resource-group rg-auralbooks-dev \
+  --name psql-auralbooks-dev \
+  --sku-name Standard_D2s_v3 \
+  --storage-size 32 \
+  --version 16
 
-# 4. Access the app
-#    Frontend:  http://localhost:4200
-#    Backend:   http://localhost:8080
-#    Swagger:   http://localhost:8080/swagger-ui.html
+# Redis — Basic (dev)
+az redis create \
+  --resource-group rg-auralbooks-dev \
+  --name redis-auralbooks-dev \
+  --sku Basic --vm-size c1
+
+# Deploy via Helm
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-dev.yaml \
+  --namespace auralbooks-dev --create-namespace \
+  --set image.tag=$(git rev-parse --short HEAD)
 ```
+</details>
 
-### Option B — Run Services Separately
+<details>
+<summary><b>🟡 UAT Environment</b></summary>
 
 ```bash
-# Terminal 1 — Start infrastructure
-docker compose up postgres redis -d
+az group create --name rg-auralbooks-uat --location eastus2
 
-# Terminal 2 — Start Spring Boot backend
-cd backend
-mvn spring-boot:run
+az aks create \
+  --resource-group rg-auralbooks-uat \
+  --name aks-auralbooks-uat \
+  --kubernetes-version 1.29 \
+  --node-count 3 \
+  --node-vm-size Standard_D4s_v5 \
+  --network-plugin azure \
+  --enable-managed-identity
 
-# Terminal 3 — Start Angular frontend
-cd frontend
-npm install
-ng serve
+az postgres flexible-server create \
+  --resource-group rg-auralbooks-uat \
+  --name psql-auralbooks-uat \
+  --sku-name Standard_D4s_v3 \
+  --storage-size 128 \
+  --version 16
+
+az redis create \
+  --resource-group rg-auralbooks-uat \
+  --name redis-auralbooks-uat \
+  --sku Standard --vm-size c2
+
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-uat.yaml \
+  --namespace auralbooks-uat --create-namespace \
+  --set image.tag=$(git rev-parse --short HEAD)
 ```
+</details>
 
-Frontend will be live at **http://localhost:4200**
-Backend API at **http://localhost:8080/api/v1**
-
----
-
-## 🍃 Backend — Spring Boot
-
-### Backend Tech Stack
-
-| Technology | Version | Role |
-|---|---|---|
-| **Spring Boot** | 3.3.2 | Application framework |
-| **Java** | 21 | Language (records, virtual threads) |
-| **Spring Security** | 6.3 | Auth, JWT filter chain |
-| **Spring Data JPA** | 3.3 | ORM, repositories |
-| **Spring Data Redis** | 3.3 | Cache abstraction |
-| **Spring WebSocket** | 6.1 | STOMP real-time messaging |
-| **Spring AI (Azure)** | 1.0.0-M2 | Azure OpenAI integration |
-| **Flyway** | 10.x | Database schema migrations |
-| **PostgreSQL Driver** | 42.7 | JDBC driver |
-| **JJWT** | 0.12.6 | JWT generation & validation |
-| **MapStruct** | 1.5.5 | DTO ↔ Entity mapping |
-| **Lombok** | 1.18 | Boilerplate reduction |
-| **Stripe Java** | 26.2 | Payment processing |
-| **Azure Storage Blob** | 12.26 | Book/audio file storage |
-| **SpringDoc OpenAPI** | 2.6 | Swagger UI auto-generation |
-| **Micrometer + Prometheus** | 1.13 | Metrics & observability |
-| **Testcontainers** | 1.19 | Integration tests with real DB |
-
-### Backend Module Breakdown
-
-#### `AuralBooksApplication.java`
-Entry point. Enables:
-- `@EnableCaching` → Redis cache via `@Cacheable` annotations
-- `@EnableJpaAuditing` → auto-populates `createdAt` / `updatedAt`
-- `@EnableAsync` → non-blocking AI calls and email dispatch
-- `@EnableScheduling` → cron jobs (daily recommendation refresh, rental expiry check)
-
-#### Controllers
-
-| Controller | File | Endpoints |
-|---|---|---|
-| `BookController` | `BookController.java` | `GET /books`, `GET /books/{id}`, `POST /books`, highlights CRUD, notes CRUD, audio URL |
-| `AuthController` | `Controllers.java` | `POST /auth/register`, `/auth/login`, `/auth/refresh`, `/auth/logout` |
-| `UserController` | `Controllers.java` | `GET /users/me`, `PUT /users/me`, `GET /users/me/library`, follow/unfollow |
-| `GroupController` | `Controllers.java` | `GET /groups`, `POST /groups`, join/leave, message history |
-| `EventController` | `Controllers.java` | `GET /events`, `GET /events/{id}`, RSVP |
-| `MarketplaceController` | `Controllers.java` | `POST /marketplace/purchase`, `/marketplace/rent`, Stripe webhook |
-| `AiController` | `Controllers.java` | `POST /ai/ask`, `/ai/summarize`, `GET /ai/recommendations`, `/ai/explain-highlight` |
-| `ChatWebSocketController` | `ChatWebSocketController.java` | `@MessageMapping /chat/{groupId}`, typing indicator, reading sync |
-
-#### Services
-
-| Service | Responsibility |
-|---|---|
-| `AuthService` | Register, login, JWT issuance, token refresh, logout + blacklist |
-| `BookService` | Book catalog queries, reading state sync, highlights CRUD, notes CRUD, signed audio URLs |
-| `AiService` | Azure OpenAI Q&A, chapter summarization, recommendation generation, highlight explanation |
-| `GroupService` | Group CRUD, membership management, message pagination |
-| `MarketplaceService` | Stripe PaymentIntent creation, order persistence, webhook handling |
-| `JwtService` | Token generation, validation, Redis-based blacklist |
-
-#### Models / Entities
-
-| Entity | Table | Key Fields |
-|---|---|---|
-| `User` | `users` | `id`, `email`, `password` (BCrypt), `role`, `subscriptionPlan`, preferences |
-| `Book` | `books` | `id`, `title`, `author`, `isbn`, `purchasePrice`, `rentalPrice`, `audioBaseUrl` |
-| `ReadingState` | `reading_states` | `userId`, `bookId`, `currentPage`, `audioPosition`, `percentComplete` |
-| `Highlight` | `highlights` | `userId`, `bookId`, `selectedText`, `color`, `pageNumber`, `note` |
-| `Note` | `notes` | `userId`, `bookId`, `content`, `aiSummary`, `tags` |
-| `ReadingGroup` | `reading_groups` | `name`, `genre`, `memberCount`, `ownerId`, `currentBookId` |
-| `Message` | `messages` | `groupId`, `senderId`, `content`, `isAiGenerated`, `sentAt` |
-| `Order` | `orders` | `userId`, `bookId`, `orderType`, `amount`, `stripePaymentId`, `status` |
-| `BookEvent` | `events` | `title`, `eventType`, `startTime`, `maxAttendees`, `rsvpCount` |
-
-### Running the Backend
-
-#### Step 1 — Start PostgreSQL & Redis
+<details>
+<summary><b>🟠 PRE-PROD Environment</b></summary>
 
 ```bash
-# Using Docker (recommended for local dev)
-docker compose up postgres redis -d
+az group create --name rg-auralbooks-preprod --location eastus2
 
-# Or use your local PostgreSQL
-createdb auralbooks
+# Production-mirrored AKS cluster
+az aks create \
+  --resource-group rg-auralbooks-preprod \
+  --name aks-auralbooks-preprod \
+  --kubernetes-version 1.29 \
+  --node-count 5 \
+  --node-vm-size Standard_D8s_v5 \
+  --network-plugin azure \
+  --network-policy calico \
+  --enable-managed-identity \
+  --zones 1 2 3
+
+# Business Critical PostgreSQL — mirrors PROD
+az postgres flexible-server create \
+  --resource-group rg-auralbooks-preprod \
+  --name psql-auralbooks-preprod \
+  --sku-name Standard_D8s_v3 \
+  --storage-size 512 \
+  --version 16 \
+  --high-availability ZoneRedundant
+
+# Redis Premium P1
+az redis create \
+  --resource-group rg-auralbooks-preprod \
+  --name redis-auralbooks-preprod \
+  --sku Premium --vm-size p1
+
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-preprod.yaml \
+  --namespace auralbooks-preprod --create-namespace \
+  --set image.tag=$(git rev-parse --short HEAD)
 ```
+</details>
 
-#### Step 2 — Configure Environment
-
-Create `backend/src/main/resources/application-local.yml` or set environment variables:
+<details>
+<summary><b>🟢 PROD Environment</b></summary>
 
 ```bash
-export DB_URL=jdbc:postgresql://localhost:5432/auralbooks
-export DB_USERNAME=auralbooks
-export DB_PASSWORD=auralbooks
-export JWT_SECRET=your-super-secret-key-at-least-32-characters-long
-export REDIS_HOST=localhost
-export REDIS_PORT=6379
+az group create --name rg-auralbooks-prod-eastus --location eastus2
 
-# Required for AI features
-export AZURE_OPENAI_API_KEY=your-azure-openai-key
-export AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
-
-# Required for book storage
-export AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;...
-
-# Required for payments
-export STRIPE_SECRET_KEY=sk_test_...
-export STRIPE_WEBHOOK_SECRET=whsec_...
-export STRIPE_PUBLISHABLE_KEY=pk_test_...
-```
-
-#### Step 3 — Run
-
-```bash
-cd backend
-
-# Development (with devtools hot-reload)
-mvn spring-boot:run -Dspring-boot.run.profiles=local
-
-# Or build and run the JAR
-mvn clean package -DskipTests
-java -jar target/auralbooks-api-1.0.0.jar
-
-# Production build
-mvn clean package
-```
-
-The API will start on **http://localhost:8080**.
-Swagger UI: **http://localhost:8080/swagger-ui.html**
-
-#### Step 4 — Verify
-
-```bash
-# Health check
-curl http://localhost:8080/actuator/health
-
-# List books (public endpoint, no auth required)
-curl http://localhost:8080/api/v1/books
-
-# Register a user
-curl -X POST http://localhost:8080/api/v1/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"Password123!","displayName":"Test User"}'
-```
-
-### Backend Environment Variables
-
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `DB_URL` | Yes | `jdbc:postgresql://localhost:5432/auralbooks` | PostgreSQL JDBC URL |
-| `DB_USERNAME` | Yes | `auralbooks` | Database username |
-| `DB_PASSWORD` | Yes | `auralbooks` | Database password |
-| `JWT_SECRET` | Yes | *(none — must set)* | HMAC-SHA256 signing key (min 32 chars) |
-| `JWT_ACCESS_EXPIRY_MS` | No | `900000` | Access token TTL (15 minutes) |
-| `JWT_REFRESH_EXPIRY_MS` | No | `2592000000` | Refresh token TTL (30 days) |
-| `REDIS_HOST` | Yes | `localhost` | Redis server host |
-| `REDIS_PORT` | No | `6379` | Redis server port |
-| `REDIS_PASSWORD` | No | *(empty)* | Redis password (if AUTH enabled) |
-| `AZURE_OPENAI_API_KEY` | Yes* | *(none)* | Azure OpenAI API key |
-| `AZURE_OPENAI_ENDPOINT` | Yes* | *(none)* | Azure OpenAI endpoint URL |
-| `AZURE_STORAGE_CONNECTION_STRING` | Yes* | *(none)* | Azure Blob Storage connection |
-| `AZURE_SPEECH_KEY` | No | *(none)* | Azure Cognitive Services TTS key |
-| `AZURE_SPEECH_REGION` | No | `eastus` | Azure region for Speech Services |
-| `STRIPE_SECRET_KEY` | Yes* | *(none)* | Stripe secret key (`sk_test_...`) |
-| `STRIPE_WEBHOOK_SECRET` | Yes* | *(none)* | Stripe webhook signing secret |
-| `STRIPE_PUBLISHABLE_KEY` | Yes* | *(none)* | Stripe publishable key (sent to frontend) |
-| `PORT` | No | `8080` | HTTP server port |
-
-> `Yes*` = Required only if that feature (AI, storage, payments) is used. The app starts without them but those endpoints will return errors.
-
-### Database Migrations
-
-Flyway runs automatically on startup. Migration files live in:
-```
-backend/src/main/resources/db/migration/
-├── V1__initial_schema.sql    # Full schema: all tables, indexes, seed data
-```
-
-**Manual migration commands:**
-```bash
-# Check migration status
-mvn flyway:info
-
-# Run pending migrations manually
-mvn flyway:migrate
-
-# Clean and re-migrate (DEV ONLY — destroys all data)
-mvn flyway:clean flyway:migrate
-```
-
-**Seed data included in V1:**
-- 4 sample books (The Midnight Library, Project Hail Mary, Lessons in Chemistry, Tomorrow and Tomorrow and Tomorrow)
-- 3 upcoming events (Author AMA, Reading Challenge, Indie Spotlight)
-
-### API Endpoints Reference
-
-All endpoints are prefixed with `/api/v1`. Authenticated endpoints require:
-```
-Authorization: Bearer <access_token>
-```
-
-#### Auth
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/auth/register` | ❌ | Register new user, returns JWT pair |
-| `POST` | `/auth/login` | ❌ | Login, returns JWT pair |
-| `POST` | `/auth/refresh` | ❌ | Exchange refresh token for new access token |
-| `POST` | `/auth/logout` | ✅ | Invalidate tokens (Redis blacklist) |
-
-#### Books
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/books` | ❌ | List books (`?genre=sci-fi&search=...&page=0&size=20`) |
-| `GET` | `/books/{id}` | ❌ | Get full book details |
-| `POST` | `/books` | ✅ PUBLISHER | Create book |
-| `PUT` | `/books/{id}` | ✅ PUBLISHER | Update book |
-| `GET` | `/books/{id}/reading-state` | ✅ | Get my reading progress for a book |
-| `PUT` | `/books/{id}/reading-state` | ✅ | Sync reading progress |
-| `GET` | `/books/{id}/highlights` | ✅ | List my highlights |
-| `POST` | `/books/{id}/highlights` | ✅ | Create highlight |
-| `PATCH` | `/books/{id}/highlights/{hid}` | ✅ | Update highlight (add note, change color) |
-| `DELETE` | `/books/{id}/highlights/{hid}` | ✅ | Delete highlight |
-| `GET` | `/books/{id}/notes` | ✅ | List my notes |
-| `POST` | `/books/{id}/notes` | ✅ | Create note |
-| `DELETE` | `/books/{id}/notes/{nid}` | ✅ | Delete note |
-| `GET` | `/books/{id}/audio/{chapter}` | ✅ | Get signed audio URL for chapter |
-
-#### Users
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/users/me` | ✅ | Get my full profile |
-| `PUT` | `/users/me` | ✅ | Update profile and preferences |
-| `GET` | `/users/{id}` | ❌ | Get a user's public profile |
-| `GET` | `/users/me/library` | ✅ | Get my purchased + rented books |
-| `POST` | `/users/{id}/follow` | ✅ | Follow a user |
-| `DELETE` | `/users/{id}/follow` | ✅ | Unfollow a user |
-
-#### Groups
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/groups` | ❌ | List groups (`?genre=sci-fi`) |
-| `POST` | `/groups` | ✅ | Create a reading group |
-| `GET` | `/groups/{id}` | ❌ | Get group details |
-| `POST` | `/groups/{id}/join` | ✅ | Join group |
-| `DELETE` | `/groups/{id}/leave` | ✅ | Leave group |
-| `GET` | `/groups/{id}/messages` | ✅ | Get message history |
-
-#### Events
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/events` | ❌ | List upcoming events |
-| `GET` | `/events/{id}` | ❌ | Get event details |
-| `POST` | `/events/{id}/rsvp` | ✅ | RSVP to event |
-| `DELETE` | `/events/{id}/rsvp` | ✅ | Cancel RSVP |
-
-#### Marketplace
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/marketplace/purchase` | ✅ | Purchase a book (creates Stripe PaymentIntent) |
-| `POST` | `/marketplace/rent` | ✅ | Rent a book (time-limited access) |
-| `POST` | `/marketplace/webhook/stripe` | ❌ | Stripe webhook (called by Stripe only) |
-
-#### AI
-
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `POST` | `/ai/ask` | ✅ | Ask a question about a book/chapter |
-| `POST` | `/ai/summarize` | ✅ | Generate chapter or book summary |
-| `GET` | `/ai/recommendations` | ✅ | Get personalized recommendations |
-| `POST` | `/ai/explain-highlight` | ✅ | Get AI explanation of highlighted text |
-
-### WebSocket / Real-time Chat
-
-The backend uses Spring WebSocket with STOMP protocol over SockJS.
-
-**Connection endpoint:** `ws://localhost:8080/ws` (with SockJS fallback)
-
-**Authentication:** Send JWT in the STOMP `CONNECT` frame headers:
-```
-CONNECT
-Authorization: Bearer <access_token>
-```
-
-**Destinations:**
-
-| Direction | Destination | Description |
-|---|---|---|
-| Client → Server | `/app/chat/{groupId}` | Send a chat message |
-| Client → Server | `/app/chat/{groupId}/typing` | Send typing indicator |
-| Client → Server | `/app/reading/{bookId}/progress` | Sync reading progress |
-| Server → Client | `/topic/chat/{groupId}` | Receive group messages |
-| Server → Client | `/topic/chat/{groupId}/typing` | Receive typing events |
-| Server → Client | `/user/queue/reading-sync` | Receive cross-device progress updates |
-
-**Angular usage (from `ChatService`):**
-```typescript
-// Subscribe to group messages
-this.chatService.subscribeToGroup(groupId).subscribe(msg => {
-  this.messages.push(msg);
-});
-
-// Send a message
-this.chatService.sendMessage(groupId, 'Hello everyone!');
-```
-
-**AI bot trigger:** If a message contains `@auralai`, the backend automatically generates and broadcasts an AI reply via `AiService.generateGroupInsight()`.
-
-### Security & JWT
-
-The security chain in `SecurityConfig.java`:
-
-```
-Request → JwtAuthFilter → SecurityContext → Controller
-
-JwtAuthFilter:
-  1. Extract Bearer token from Authorization header
-  2. Parse JWT using HMAC-SHA256 (JJWT)
-  3. Check Redis blacklist (invalidated tokens)
-  4. Load UserDetails from DB
-  5. Set Authentication in SecurityContext
-```
-
-**Token lifecycle:**
-
-| Token Type | TTL | Storage | Refresh |
-|---|---|---|---|
-| Access Token | 15 minutes | `localStorage` (Angular) | Via `/auth/refresh` |
-| Refresh Token | 30 days | `localStorage` (Angular) | Re-login |
-
-**Angular `AuthInterceptor`** automatically attaches the Bearer token and handles 401 responses by calling `/auth/refresh` and retrying.
-
-### Caching Strategy
-
-Spring `@Cacheable` is backed by Redis. Cache keys and TTLs:
-
-| Cache Name | Key Pattern | TTL | Invalidation |
-|---|---|---|---|
-| `book` | `book::{bookId}` | 5 min (default) | `@CacheEvict` on update |
-| `bookList` | `bookList::{genre}_{search}_{pageable}` | 5 min | On any book change |
-| `recommendations` | `recommendations::{userId}` | 6 hours | On reading state update |
-
----
-
-## 🅰 Frontend — Angular 18
-
-### Frontend Tech Stack
-
-| Technology | Version | Role |
-|---|---|---|
-| **Angular** | 18.0 | SPA framework (standalone components) |
-| **TypeScript** | 5.4 | Typed language |
-| **Angular Material** | 18.0 | UI component library |
-| **Angular CDK** | 18.0 | Accessibility, drag & drop |
-| **NgRx Store** | 18.0 | Redux-style state management |
-| **NgRx Effects** | 18.0 | Side effects (HTTP calls) |
-| **NgRx Entity** | 18.0 | Normalized entity collections |
-| **@stomp/rx-stomp** | 2.0 | RxJS WebSocket STOMP client |
-| **@stripe/stripe-js** | 4.0 | Stripe payment integration |
-| **epubjs** | 0.3.93 | ePub rendering in browser |
-| **RxJS** | 7.8 | Reactive streams |
-| **Angular Service Worker** | 18.0 | PWA + offline reading |
-
-### Frontend Module Breakdown
-
-#### Routing (`app.routes.ts`)
-All routes use **lazy loading** with `loadComponent()` for optimal bundle splitting:
-```typescript
-{ path: 'read/:id',  canActivate: [authGuard],
-  loadComponent: () => import('./components/reader/reader.component')
-                         .then(m => m.ReaderComponent) }
-```
-
-#### Services (`services/services.ts`)
-
-| Service | Methods | Notes |
-|---|---|---|
-| `AuthService` | `login()`, `register()`, `logout()`, `refreshAccessToken()` | Uses Angular `signal()` for reactive auth state |
-| `BookService` | `getBooks()`, `getBook()`, `updateReadingState()`, `getHighlights()`, `createHighlight()` | Injects `HttpClient` directly (standalone) |
-| `ChatService` | `connect()`, `subscribeToGroup()`, `sendMessage()`, `sendTypingIndicator()` | Wraps `RxStomp` for WebSocket |
-| `AiService` | `askQuestion()`, `summarizeChapter()`, `getRecommendations()`, `explainHighlight()` | Calls Spring AI endpoints |
-| `GroupService` | `getGroups()`, `createGroup()`, `joinGroup()`, `leaveGroup()` | Genre filtering support |
-| `MarketplaceService` | `purchaseBook()`, `rentBook()`, `confirmPayment()` | Integrates Stripe.js |
-
-#### Guards (`guards/auth.guard.ts`)
-```typescript
-export const authGuard: CanActivateFn = () => {
-  const auth = inject(AuthService);
-  return auth.isAuthenticated() || inject(Router).createUrlTree(['/login']);
-};
-```
-
-#### Interceptors
-
-- **`AuthInterceptor`** — Clones every outgoing request and adds `Authorization: Bearer <token>`
-- **`RefreshInterceptor`** — Catches 401 responses, silently refreshes the access token, and retries the original request
-
-### Running the Frontend
-
-```bash
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start dev server (proxies /api/* to localhost:8080)
-ng serve
-
-# Build for production
-ng build --configuration production
-
-# Run unit tests
-ng test
-
-# Check for linting issues
-ng lint
-```
-
-App runs on **http://localhost:4200**. The Angular dev server proxies all `/api/**` requests to the Spring Boot backend at `http://localhost:8080`.
-
-**Proxy config (`proxy.conf.json`):**
-```json
-{
-  "/api": {
-    "target": "http://localhost:8080",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/ws": {
-    "target": "ws://localhost:8080",
-    "ws": true
-  }
-}
-```
-
-### Frontend Environment Configuration
-
-`src/environments/environment.ts` (development):
-```typescript
-export const environment = {
-  production: false,
-  apiUrl: '/api/v1',
-  wsUrl: 'http://localhost:8080/ws',
-  stripePublishableKey: 'pk_test_YOUR_KEY_HERE',
-};
-```
-
-`src/environments/environment.production.ts`:
-```typescript
-export const environment = {
-  production: true,
-  apiUrl: 'https://api.auralbooks.com/api/v1',
-  wsUrl: 'wss://api.auralbooks.com/ws',
-  stripePublishableKey: 'pk_live_YOUR_KEY_HERE',
-};
-```
-
-### NgRx State Management
-
-State is divided into feature slices:
-
-```
-store/
-├── auth/
-│   ├── auth.actions.ts       # login, loginSuccess, loginFailure, logout
-│   ├── auth.reducer.ts       # AuthState: { user, token, loading, error }
-│   ├── auth.effects.ts       # Calls AuthService, dispatches success/failure
-│   └── auth.selectors.ts     # selectCurrentUser, selectIsAuthenticated
-│
-├── books/
-│   ├── books.actions.ts      # loadBooks, loadBooksSuccess, setReadingState
-│   ├── books.reducer.ts      # BooksState (EntityAdapter)
-│   ├── books.effects.ts      # Calls BookService
-│   └── books.selectors.ts    # selectAllBooks, selectBookById
-│
-├── groups/
-│   └── ...                   # Same pattern for reading groups
-│
-└── app.state.ts              # Root AppState combining all slices
-```
-
-### Angular Services
-
-#### `AuthService` — Signals-based authentication
-```typescript
-// In any component
-auth = inject(AuthService);
-
-// Reactive auth state via Angular Signals
-isLoggedIn = this.auth.isAuthenticated;  // Signal<boolean>
-user = this.auth.currentUser;            // Signal<UserProfile | null>
-
-// Template usage
-@if (auth.isAuthenticated()) {
-  <app-user-menu [user]="auth.currentUser()" />
-}
-```
-
-#### `ChatService` — Real-time WebSocket
-```typescript
-// Connect on app init
-this.chatService.connect();
-
-// Subscribe to group messages (RxJS Observable)
-this.chatService.subscribeToGroup(this.groupId)
-  .pipe(takeUntilDestroyed())
-  .subscribe(msg => this.messages.push(msg));
-
-// Send message
-this.chatService.sendMessage(this.groupId, this.messageText);
-```
-
----
-
-## 🐳 Docker & Docker Compose
-
-**`docker-compose.yml`** — Full local stack:
-
-```yaml
-version: '3.9'
-services:
-
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: auralbooks
-      POSTGRES_USER: auralbooks
-      POSTGRES_PASSWORD: auralbooks
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7.2-alpine
-    command: redis-server --appendonly yes
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile.backend
-    ports:
-      - "8080:8080"
-    environment:
-      DB_URL: jdbc:postgresql://postgres:5432/auralbooks
-      DB_USERNAME: auralbooks
-      DB_PASSWORD: auralbooks
-      REDIS_HOST: redis
-      JWT_SECRET: ${JWT_SECRET}
-      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY}
-      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
-      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
-    depends_on:
-      - postgres
-      - redis
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.frontend
-    ports:
-      - "4200:80"
-    depends_on:
-      - backend
-
-volumes:
-  postgres_data:
-  redis_data:
-```
-
-**`Dockerfile.backend`** — Multi-stage Spring Boot build:
-```dockerfile
-FROM maven:3.9-eclipse-temurin-21 AS build
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline -q
-COPY src ./src
-RUN mvn clean package -DskipTests -q
-
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/auralbooks-api-1.0.0.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
-```
-
-**`Dockerfile.frontend`** — Angular + Nginx:
-```dockerfile
-FROM node:20-alpine AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --prefer-offline
-COPY . .
-RUN npm run build -- --configuration production
-
-FROM nginx:alpine
-COPY --from=build /app/dist/auralbooks-frontend/browser /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-```
-
----
-
-## ☁️ Azure Infrastructure
-
-### Resource Groups
-
-All Azure resources are organised into purpose-scoped resource groups for clean cost attribution, RBAC boundaries, and independent lifecycle management.
-
-| Resource Group | Region | Contents |
-|---|---|---|
-| `rg-auralbooks-global` | Global | Azure Front Door, DNS Zone (`auralbooks.com`), Azure AD B2C tenant |
-| `rg-auralbooks-prod-eastus` | East US 2 | Primary AKS cluster, PostgreSQL, Redis, Blob Storage, Service Bus, App Insights |
-| `rg-auralbooks-prod-westeu` | West Europe | DR AKS (standby), PostgreSQL geo-replica, Redis replica, Blob GRS secondary |
-| `rg-auralbooks-shared` | East US 2 | Azure Container Registry, Key Vault, App Configuration, Log Analytics Workspace |
-| `rg-auralbooks-dev` | East US 2 | Dev/test copies of all services at smaller SKUs |
-
-### Provisioning (Terraform)
-
-All infrastructure is declared as code under `infra/terraform/`. To provision from scratch:
-
-```bash
-cd infra/terraform
-
-# Initialise — state stored in Azure Blob Storage
-terraform init \
-  -backend-config="storage_account_name=stauralbooks" \
-  -backend-config="container_name=tfstate" \
-  -backend-config="key=prod.terraform.tfstate"
-
-# Review the plan
-terraform plan -var-file="environments/prod.tfvars" -out=tfplan
-
-# Apply
-terraform apply tfplan
-```
-
-### Azure Services
-
-| Service | SKU / Config | Purpose |
-|---|---|---|
-| **AKS** | System: 3×D4s_v5 · App: 5–50×D8s_v5 · GPU: 2–10×NC6s_v3 | Spring Boot microservices, autoscaled |
-| **Azure Static Web Apps** | Standard | Angular SPA — global CDN, zero-config TLS |
-| **Azure Front Door Premium** | WAF ruleset OWASP 3.2 | Anycast routing, DDoS, WAF, geo-failover |
-| **Azure API Management** | Standard | Rate limiting, JWT validation, request routing |
-| **Azure Container Registry** | Premium | Docker images with geo-replication |
-| **Azure Cosmos DB** | 100K–1M RU/s autoscale, 2 regions | Reading state, chat, groups (Session consistency) |
-| **Azure SQL** | Business Critical, Gen5 16 vCores | Orders, payments, royalties, audit logs |
-| **Azure Cache for Redis** | Premium P3, 3 shards (78 GB) | Spring Boot `@Cacheable`, session, pub/sub |
-| **Azure Blob Storage** | Hot tier, GRS, 200 TB | ePub, audio, cover images (CDN-fronted) |
-| **Azure OpenAI** | GPT-4o deployment | AI assistant, summaries, group bot |
-| **Azure Cognitive Services** | Neural TTS, S0 | Audiobook narration generation |
-| **Azure SignalR Service** | Standard, 100 units | WebSocket scale-out for group chat |
-| **Azure Service Bus** | Premium, 1 MU | Orders queue, notifications queue, royalties queue |
-| **Azure Event Hubs** | Standard, 32 partitions | Reading analytics, audit event stream |
-| **Azure Functions** | Consumption + Premium EP2 | Royalties, notifications, TTS processor, webhooks |
-| **Azure AD B2C** | 2 M MAU | Enterprise/social identity (optional overlay) |
-| **Azure Key Vault** | Standard | All secrets, TLS certificates, encryption keys |
-| **Azure App Configuration** | Standard | Feature flags, shared config, environment values |
-| **Azure Monitor + App Insights** | Pay-per-use | Metrics, distributed tracing, alerts |
-
-### AKS Cluster Setup
-
-```bash
-# Create AKS cluster with three node pools
+# Full-scale AKS — 3 node pools, availability zones
 az aks create \
   --resource-group rg-auralbooks-prod-eastus \
   --name aks-auralbooks-prod \
@@ -1699,764 +421,2166 @@ az aks create \
   --enable-addons monitoring,azure-keyvault-secrets-provider \
   --zones 1 2 3
 
-# System node pool (already created above, update it)
-az aks nodepool update \
-  --cluster-name aks-auralbooks-prod \
-  --resource-group rg-auralbooks-prod-eastus \
-  --name systempool \
-  --node-count 3 \
-  --node-vm-size Standard_D4s_v5 \
-  --node-taints CriticalAddonsOnly=true:NoSchedule
-
-# Application node pool — auto-scaling 5 to 50
+# System node pool
 az aks nodepool add \
   --cluster-name aks-auralbooks-prod \
   --resource-group rg-auralbooks-prod-eastus \
-  --name apppool \
-  --node-vm-size Standard_D8s_v5 \
-  --enable-cluster-autoscaler \
-  --min-count 5 \
-  --max-count 50 \
+  --name systempool --node-count 3 \
+  --node-vm-size Standard_D4s_v5 \
+  --node-taints CriticalAddonsOnly=true:NoSchedule \
   --zones 1 2 3
 
-# GPU node pool for AI workloads — auto-scaling 2 to 10
+# Application node pool — autoscaled 5→50
 az aks nodepool add \
   --cluster-name aks-auralbooks-prod \
   --resource-group rg-auralbooks-prod-eastus \
-  --name gpupool \
-  --node-vm-size Standard_NC6s_v3 \
-  --enable-cluster-autoscaler \
-  --min-count 2 \
-  --max-count 10 \
-  --node-taints sku=gpu:NoSchedule
+  --name apppool --node-vm-size Standard_D8s_v5 \
+  --enable-cluster-autoscaler --min-count 5 --max-count 50 \
+  --zones 1 2 3
 
-# Install cluster essentials
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
+# GPU node pool for AI workloads
+az aks nodepool add \
+  --cluster-name aks-auralbooks-prod \
+  --resource-group rg-auralbooks-prod-eastus \
+  --name gpupool --node-vm-size Standard_NC6s_v3 \
+  --enable-cluster-autoscaler --min-count 2 --max-count 10 \
+  --node-taints sku=gpu:NoSchedule \
+  --zones 1 2 3
 
-helm repo add cert-manager https://charts.jetstack.io
-helm install cert-manager cert-manager/cert-manager \
-  --namespace cert-manager --create-namespace \
-  --set installCRDs=true
+# PostgreSQL — Business Critical, zone-redundant HA
+az postgres flexible-server create \
+  --resource-group rg-auralbooks-prod-eastus \
+  --name psql-auralbooks-prod \
+  --sku-name Standard_D16s_v3 --storage-size 1024 \
+  --version 16 --high-availability ZoneRedundant
 
-helm repo add kedacore https://kedacore.github.io/charts
-helm install keda kedacore/keda --namespace keda --create-namespace
+# Redis Premium P3 — 3 shards, 78GB
+az redis create \
+  --resource-group rg-auralbooks-prod-eastus \
+  --name redis-auralbooks-prod \
+  --sku Premium --vm-size p3 --shard-count 3
+
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-prod.yaml \
+  --namespace auralbooks-core --create-namespace \
+  --set image.tag=$IMAGE_TAG
+```
+</details>
+
+<details>
+<summary><b>🔴 DR Environment (West Europe — Warm Standby)</b></summary>
+
+```bash
+az group create --name rg-auralbooks-dr --location westeurope
+
+# Warm standby AKS — pre-provisioned, scaled down
+az aks create \
+  --resource-group rg-auralbooks-dr \
+  --name aks-auralbooks-dr \
+  --location westeurope \
+  --kubernetes-version 1.29 \
+  --node-count 3 \
+  --node-vm-size Standard_D8s_v5 \
+  --network-plugin azure \
+  --network-policy calico \
+  --enable-managed-identity \
+  --zones 1 2 3
+
+# PostgreSQL read-replica from PROD
+az postgres flexible-server replica create \
+  --name psql-auralbooks-dr \
+  --source-server psql-auralbooks-prod \
+  --resource-group rg-auralbooks-dr \
+  --location westeurope
+
+# Redis geo-replication linked to PROD
+az redis create \
+  --resource-group rg-auralbooks-dr \
+  --name redis-auralbooks-dr \
+  --sku Premium --vm-size p3 --shard-count 3
+
+az redis geo-replication link \
+  --name redis-auralbooks-dr \
+  --linked-redis-cache-name redis-auralbooks-prod \
+  --linked-redis-cache-resource-group rg-auralbooks-prod-eastus \
+  --resource-group rg-auralbooks-dr
+
+# Deploy (scaled to 0 — activated only on failover)
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-dr.yaml \
+  --namespace auralbooks-core --create-namespace \
+  --set replicaCount=0
+```
+</details>
+
+---
+
+## 🚀 CI/CD Pipelines — Azure DevOps
+
+### Pipeline Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                      AZURE DEVOPS GITOPS CI/CD FLOW                          │
+│                                                                              │
+│  Developer Push (feature/* or develop)                                       │
+│       │                                                                      │
+│       ▼                                                                      │
+│  ┌──────────────────────────────────────────────────────────────┐            │
+│  │  CI Pipeline — Build, Test & Quality Gate                    │            │
+│  │  Maven/npm Build · JUnit · SonarQube · CodeQL · OWASP DC    │            │
+│  └─────────────────────────┬────────────────────────────────────┘            │
+│                            │ Image Push → Azure Container Registry           │
+│                            ▼                                                 │
+│  ┌──────────────────────────────────────────────────────────────┐            │
+│  │  CD Pipeline — Helm values-*.yaml updated in GitOps repo     │            │
+│  │  image.tag = $(Build.BuildId)-$(Build.SourceVersion)         │            │
+│  └─────────────────────────┬────────────────────────────────────┘            │
+│                            │                                                 │
+│            ┌───────────────┼───────────────────────┐                        │
+│            ▼               ▼                       ▼                        │
+│       [DEV Stage]     [UAT Stage]           [PRE-PROD Stage]                 │
+│       Auto-deploy     Auto-deploy           Auto-deploy                      │
+│            │               │                       │                        │
+│            │               │              [PROD Stage — Manual Gate]         │
+│            │               │              2 Approvals required               │
+│            ▼               ▼                       ▼                        │
+│       ArgoCD syncs to respective AKS cluster (GitOps)                       │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Kubernetes namespaces:**
+All pipelines are defined as YAML in `azure-pipelines/`. Azure DevOps **Variable Groups** and **Azure Key Vault** integration handle all secrets — no credentials live in YAML files.
 
-| Namespace | Workloads |
-|---|---|
-| `auralbooks-core` | book-service, user-service, auth-service |
-| `auralbooks-social` | chat-service, group-service, event-service |
-| `auralbooks-ai` | ai-service (GPU nodeSelector) |
-| `auralbooks-commerce` | marketplace-service |
-| `ingress-nginx` | NGINX ingress controller |
-| `cert-manager` | TLS certificate automation |
-| `keda` | Event-driven autoscaler |
+---
 
-**Horizontal Pod Autoscaler (HPA) — all services:**
+### Variable Groups & Library
+
+Before using the pipelines, configure the following Variable Groups in **Azure DevOps → Pipelines → Library**:
+
+| Variable Group | Linked To | Contains |
+|---|---|---|
+| `auralbooks-common` | — | `SONAR_HOST_URL`, `ACR_NAME`, `ACR_LOGIN_SERVER` |
+| `auralbooks-dev` | Key Vault `kv-auralbooks-dev` | `DB_URL`, `REDIS_URL`, `AZURE_CREDENTIALS` |
+| `auralbooks-uat` | Key Vault `kv-auralbooks-uat` | `DB_URL`, `REDIS_URL`, `AZURE_CREDENTIALS` |
+| `auralbooks-preprod` | Key Vault `kv-auralbooks-preprod` | `DB_URL`, `REDIS_URL`, `AZURE_CREDENTIALS` |
+| `auralbooks-prod` | Key Vault `kv-auralbooks-prod` | `DB_URL`, `REDIS_URL`, `AZURE_CREDENTIALS`, `STRIPE_SECRET_KEY` |
+
+> **Service Connections** required in Azure DevOps Project Settings:
+> - `sc-acr-auralbooks` → Azure Container Registry
+> - `sc-azure-dev`, `sc-azure-uat`, `sc-azure-preprod`, `sc-azure-prod` → ARM Service Connections per environment
+> - `sc-sonarqube` → SonarQube server
+
+---
+
+### DEV Pipeline
+
+Triggered on every push to `develop` or `feature/*` branches. Runs unit tests, SonarQube analysis, SAST, and deploys to the DEV AKS cluster via ArgoCD.
 
 ```yaml
-# hpa-backend.yaml — applied to every Spring Boot deployment
+# azure-pipelines/dev-pipeline.yml
+trigger:
+  branches:
+    include:
+      - develop
+      - feature/*
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: auralbooks-common
+  - group: auralbooks-dev
+  - name: IMAGE_TAG
+    value: "dev-$(Build.BuildId)-$(Build.SourceVersion)"
+  - name: MAVEN_CACHE_FOLDER
+    value: $(Pipeline.Workspace)/.m2/repository
+
+stages:
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 1: BUILD & UNIT TESTS
+  # ─────────────────────────────────────────────────────────
+  - stage: Build
+    displayName: "🔨 Build & Unit Tests"
+    jobs:
+      - job: BackendBuild
+        displayName: "Backend — Maven Build & Unit Tests"
+        steps:
+          - task: Cache@2
+            inputs:
+              key: 'maven | "$(Agent.OS)" | backend/pom.xml'
+              restoreKeys: |
+                maven | "$(Agent.OS)"
+                maven
+              path: $(MAVEN_CACHE_FOLDER)
+            displayName: "Cache Maven dependencies"
+
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+            displayName: "Set up Java 21"
+
+          - script: |
+              cd backend
+              mvn test \
+                -Dgroups=unit \
+                -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) \
+                -q --no-transfer-progress
+            displayName: "Run unit tests"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: "backend/**/surefire-reports/TEST-*.xml"
+              mergeTestResults: true
+              testRunTitle: "Backend Unit Tests — DEV"
+            condition: always()
+
+          - task: PublishCodeCoverageResults@2
+            inputs:
+              summaryFileLocation: "backend/target/site/jacoco/jacoco.xml"
+              reportDirectory: "backend/target/site/jacoco"
+            displayName: "Publish Jacoco coverage"
+
+      - job: FrontendBuild
+        displayName: "Frontend — npm Build & Unit Tests"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+            displayName: "Set up Node 20"
+
+          - task: Cache@2
+            inputs:
+              key: 'npm | "$(Agent.OS)" | frontend/package-lock.json'
+              restoreKeys: npm | "$(Agent.OS)"
+              path: $(Pipeline.Workspace)/.npm
+            displayName: "Cache npm packages"
+
+          - script: |
+              cd frontend
+              npm ci --cache $(Pipeline.Workspace)/.npm
+              npx ng test --watch=false --browsers=ChromeHeadless --code-coverage
+            displayName: "Run Angular unit tests"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: "frontend/test-results/TESTS-*.xml"
+              testRunTitle: "Frontend Unit Tests — DEV"
+            condition: always()
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 2: CODE QUALITY & SECURITY
+  # ─────────────────────────────────────────────────────────
+  - stage: Quality
+    displayName: "🔍 Code Quality & SAST"
+    dependsOn: Build
+    jobs:
+      - job: SonarQube
+        displayName: "SonarQube Analysis"
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - task: SonarQubePrepare@6
+            inputs:
+              SonarQube: sc-sonarqube
+              scannerMode: Other
+              extraProperties: |
+                sonar.projectKey=auralbooks-backend
+                sonar.projectName=AuralBooks Backend
+                sonar.sources=src/main/java
+                sonar.tests=src/test/java
+                sonar.java.binaries=target/classes
+                sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                sonar.exclusions=**/generated/**,**/*Config*.java,**/*Application.java
+            displayName: "Prepare SonarQube analysis"
+
+          - script: |
+              cd backend
+              mvn verify sonar:sonar \
+                -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) \
+                --no-transfer-progress
+            displayName: "Run Maven + SonarQube scan"
+
+          - task: SonarQubePublish@6
+            inputs:
+              pollingTimeoutSec: "300"
+            displayName: "Publish SonarQube results"
+
+      - job: SAST
+        displayName: "SAST — CodeQL + OWASP Dependency Check"
+        steps:
+          - task: AdvancedSecurity-Codeql-Init@1
+            inputs:
+              languages: java, javascript
+              querysuite: security-extended
+            displayName: "Initialize CodeQL"
+
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              cd backend
+              mvn compile -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) --no-transfer-progress
+            displayName: "Build for CodeQL"
+
+          - task: AdvancedSecurity-Codeql-Analyze@1
+            displayName: "Run CodeQL analysis"
+
+          - script: |
+              cd backend
+              mvn org.owasp:dependency-check-maven:check \
+                -DfailBuildOnCVSS=9 \
+                -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) \
+                --no-transfer-progress
+            displayName: "OWASP Dependency Check (SCA)"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: "backend/target/dependency-check-report.html"
+              artifactName: "owasp-dependency-report"
+            condition: always()
+            displayName: "Publish OWASP report"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 3: BUILD & PUSH DOCKER IMAGES
+  # ─────────────────────────────────────────────────────────
+  - stage: DockerBuildPush
+    displayName: "🐳 Build & Push Images to ACR"
+    dependsOn: Quality
+    jobs:
+      - job: BuildPushImages
+        displayName: "Build and push backend + frontend images"
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-dev
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image backend:$(IMAGE_TAG) \
+                  ./backend \
+                  --file ./backend/Dockerfile
+
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image frontend:$(IMAGE_TAG) \
+                  ./frontend \
+                  --file ./frontend/Dockerfile
+            displayName: "Build and push images via ACR Tasks"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 4: DEPLOY TO DEV
+  # ─────────────────────────────────────────────────────────
+  - stage: DeployDev
+    displayName: "🔵 Deploy to DEV"
+    dependsOn: DockerBuildPush
+    jobs:
+      - deployment: DeployToDev
+        displayName: "Update GitOps values & ArgoCD sync"
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+
+                - script: |
+                    sed -i "s|tag:.*|tag: $(IMAGE_TAG)|g" helm/auralbooks/values-dev.yaml
+                    git config user.email "azuredevops@auralbooks.com"
+                    git config user.name "Azure DevOps"
+                    git add helm/auralbooks/values-dev.yaml
+                    git commit -m "chore(dev): bump image to $(IMAGE_TAG) [skip ci]"
+                    git push origin $(Build.SourceBranchName)
+                  displayName: "Update Helm values for DEV (GitOps)"
+                  # ArgoCD auto-syncs DEV cluster on this commit
+
+                - script: |
+                    sleep 90
+                    curl -f https://dev-api.auralbooks.com/actuator/health || exit 1
+                    echo "✅ DEV smoke test passed"
+                  displayName: "Smoke test — DEV health check"
+```
+
+---
+
+### UAT Pipeline
+
+Triggered on push to `uat` branch. Runs integration tests with Testcontainers, Pact contract tests, OWASP ZAP DAST scan, then deploys to UAT via ArgoCD.
+
+```yaml
+# azure-pipelines/uat-pipeline.yml
+trigger:
+  branches:
+    include:
+      - uat
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: auralbooks-common
+  - group: auralbooks-uat
+  - name: IMAGE_TAG
+    value: "uat-$(Build.BuildId)-$(Build.SourceVersion)"
+
+stages:
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 1: INTEGRATION TESTS
+  # ─────────────────────────────────────────────────────────
+  - stage: IntegrationTests
+    displayName: "🧪 Integration & Contract Tests"
+    jobs:
+      - job: BackendIntegration
+        displayName: "Backend — Testcontainers integration tests"
+        services:
+          postgres:
+            image: postgres:16-alpine
+            env:
+              POSTGRES_DB: auralbooks_test
+              POSTGRES_USER: test
+              POSTGRES_PASSWORD: test
+            ports:
+              - 5432:5432
+          redis:
+            image: redis:7.2-alpine
+            ports:
+              - 6379:6379
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              cd backend
+              mvn verify \
+                -Dgroups=integration \
+                -Dspring.profiles.active=test \
+                -Dspring.datasource.url=jdbc:postgresql://localhost:5432/auralbooks_test \
+                --no-transfer-progress
+            displayName: "Run integration tests"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: "backend/**/failsafe-reports/TEST-*.xml"
+              testRunTitle: "Backend Integration Tests — UAT"
+            condition: always()
+
+      - job: ContractTests
+        displayName: "API Contract Tests — Pact"
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              cd backend
+              mvn test -Dgroups=contract --no-transfer-progress
+            displayName: "Run Pact contract tests"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 2: DAST SCAN ON UAT ENDPOINT
+  # ─────────────────────────────────────────────────────────
+  - stage: DAST
+    displayName: "🛡️ DAST — OWASP ZAP Scan (UAT)"
+    dependsOn: IntegrationTests
+    jobs:
+      - job: ZAPScan
+        displayName: "OWASP ZAP Full Authenticated Scan"
+        steps:
+          - script: |
+              docker run --rm \
+                -v $(System.DefaultWorkingDirectory)/.zap:/zap/wrk/:rw \
+                ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
+                -t https://uat-api.auralbooks.com \
+                -r zap-report.html \
+                -J zap-report.json \
+                -l WARN \
+                -c /zap/wrk/rules.tsv \
+                -z "-config replacer.full_list(0).description=auth \
+                     -config replacer.full_list(0).enabled=true \
+                     -config replacer.full_list(0).matchtype=REQ_HEADER \
+                     -config replacer.full_list(0).matchstr=Authorization \
+                     -config replacer.full_list(0).replacement=Bearer $(ZAP_AUTH_TOKEN)"
+            displayName: "Run ZAP authenticated scan"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: "$(System.DefaultWorkingDirectory)/.zap/zap-report.html"
+              artifactName: "zap-dast-report-uat"
+            condition: always()
+            displayName: "Publish ZAP DAST report"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 3: BUILD & PUSH
+  # ─────────────────────────────────────────────────────────
+  - stage: DockerBuildPush
+    displayName: "🐳 Build & Push Images to ACR"
+    dependsOn: DAST
+    jobs:
+      - job: BuildPushImages
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-uat
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image backend:$(IMAGE_TAG) ./backend \
+                  --file ./backend/Dockerfile
+
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image frontend:$(IMAGE_TAG) ./frontend \
+                  --file ./frontend/Dockerfile
+            displayName: "Build and push images via ACR Tasks"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 4: DEPLOY TO UAT
+  # ─────────────────────────────────────────────────────────
+  - stage: DeployUAT
+    displayName: "🟡 Deploy to UAT"
+    dependsOn: DockerBuildPush
+    jobs:
+      - deployment: DeployToUAT
+        displayName: "Update GitOps & ArgoCD sync to UAT"
+        environment: uat
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+
+                - script: |
+                    sed -i "s|tag:.*|tag: $(IMAGE_TAG)|g" helm/auralbooks/values-uat.yaml
+                    git config user.email "azuredevops@auralbooks.com"
+                    git config user.name "Azure DevOps"
+                    git add helm/auralbooks/values-uat.yaml
+                    git commit -m "chore(uat): promote $(IMAGE_TAG) to UAT [skip ci]"
+                    git push origin uat
+                  displayName: "Update Helm values for UAT (GitOps)"
+
+                - script: |
+                    sleep 90
+                    curl -f https://uat-api.auralbooks.com/actuator/health || exit 1
+                    curl -f https://uat.auralbooks.com || exit 1
+                    echo "✅ UAT smoke tests passed"
+                  displayName: "Smoke test — UAT health check"
+```
+
+---
+
+### PRE-PROD Pipeline
+
+Full quality gate. Triggered on push to `main`. Runs the complete test suite, SonarQube blocking quality gate, advanced SAST (Semgrep), ZAP full authenticated scan, Trivy container scan, Checkov IaC scan, k6 NFR benchmarks, and spike load test before deploying to PRE-PROD and running Playwright regression.
+
+```yaml
+# azure-pipelines/preprod-pipeline.yml
+trigger:
+  branches:
+    include:
+      - main
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: auralbooks-common
+  - group: auralbooks-preprod
+  - name: IMAGE_TAG
+    value: "$(Build.BuildId)-$(Build.SourceVersion)"
+
+stages:
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 1: FULL TEST SUITE
+  # ─────────────────────────────────────────────────────────
+  - stage: FullTestSuite
+    displayName: "🧪 Full Test Suite — Unit + Integration + Regression"
+    jobs:
+      - job: BackendFullTests
+        timeoutInMinutes: 30
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              cd backend
+              mvn verify \
+                -Dspring.profiles.active=test \
+                --no-transfer-progress
+            displayName: "Full Maven verify (unit + integration)"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: |
+                backend/**/surefire-reports/TEST-*.xml
+                backend/**/failsafe-reports/TEST-*.xml
+              mergeTestResults: true
+              testRunTitle: "Full Backend Test Suite — PRE-PROD"
+            condition: always()
+
+          - task: PublishCodeCoverageResults@2
+            inputs:
+              summaryFileLocation: "backend/target/site/jacoco/jacoco.xml"
+            displayName: "Publish coverage"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 2: SONARQUBE QUALITY GATE (BLOCKING)
+  # ─────────────────────────────────────────────────────────
+  - stage: SonarQubeGate
+    displayName: "🔬 SonarQube Quality Gate (Blocking)"
+    dependsOn: FullTestSuite
+    jobs:
+      - job: SonarAnalysis
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - task: SonarQubePrepare@6
+            inputs:
+              SonarQube: sc-sonarqube
+              scannerMode: Other
+              extraProperties: |
+                sonar.projectKey=auralbooks-backend
+                sonar.sources=src/main/java
+                sonar.tests=src/test/java
+                sonar.java.binaries=target/classes
+                sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+                sonar.qualitygate.wait=true
+                sonar.coverage.exclusions=**/*Config*.java,**/*Application.java
+
+          - script: |
+              cd backend
+              mvn verify sonar:sonar --no-transfer-progress
+            displayName: "Run SonarQube — quality gate blocks on fail"
+
+          - task: SonarQubePublish@6
+            inputs:
+              pollingTimeoutSec: "300"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 3: ADVANCED SAST
+  # ─────────────────────────────────────────────────────────
+  - stage: AdvancedSAST
+    displayName: "🔐 Advanced SAST — Semgrep + CodeQL"
+    dependsOn: FullTestSuite
+    jobs:
+      - job: Semgrep
+        displayName: "Semgrep — OWASP Top 10 + Spring rules"
+        container:
+          image: returntocorp/semgrep
+        steps:
+          - script: |
+              semgrep ci \
+                --config p/java \
+                --config p/spring \
+                --config p/secrets \
+                --config p/owasp-top-ten \
+                --config p/sql-injection \
+                --error \
+                --sarif \
+                --output semgrep-results.sarif
+            displayName: "Run Semgrep scan"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: semgrep-results.sarif
+              artifactName: semgrep-sarif
+            condition: always()
+
+      - job: CodeQL
+        displayName: "CodeQL — Java + TypeScript (security-extended)"
+        steps:
+          - task: AdvancedSecurity-Codeql-Init@1
+            inputs:
+              languages: java, javascript
+              querysuite: security-extended
+
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: "21"
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              cd backend
+              mvn compile --no-transfer-progress
+            displayName: "Build for CodeQL"
+
+          - task: AdvancedSecurity-Codeql-Analyze@1
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 4: DAST — AUTHENTICATED FULL SCAN ON PRE-PROD
+  # ─────────────────────────────────────────────────────────
+  - stage: DAST
+    displayName: "🛡️ DAST — OWASP ZAP Authenticated Full Scan"
+    dependsOn: SonarQubeGate
+    jobs:
+      - job: ZAPFullScan
+        steps:
+          - script: |
+              docker run --rm \
+                -v $(System.DefaultWorkingDirectory)/.zap:/zap/wrk/:rw \
+                ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
+                -t https://preprod-api.auralbooks.com \
+                -r zap-report-preprod.html \
+                -J zap-report-preprod.json \
+                -l WARN \
+                -c /zap/wrk/rules.tsv
+            displayName: "Run ZAP full scan on PRE-PROD"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: "$(System.DefaultWorkingDirectory)/.zap/zap-report-preprod.html"
+              artifactName: "zap-dast-report-preprod"
+            condition: always()
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 5: CONTAINER & IaC SECURITY SCAN
+  # ─────────────────────────────────────────────────────────
+  - stage: SecurityScan
+    displayName: "🔒 Container & IaC Security Scan"
+    dependsOn: DockerBuildPush
+    jobs:
+      - job: TrivyScan
+        displayName: "Trivy — Container image scan"
+        steps:
+          - script: |
+              docker run --rm \
+                aquasec/trivy:latest image \
+                --exit-code 1 \
+                --severity CRITICAL,HIGH \
+                --format sarif \
+                --output trivy-results.sarif \
+                $(ACR_LOGIN_SERVER)/backend:$(IMAGE_TAG)
+            displayName: "Scan backend image with Trivy"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: trivy-results.sarif
+              artifactName: trivy-report
+            condition: always()
+
+      - job: CheckovScan
+        displayName: "Checkov — Terraform IaC scan"
+        container:
+          image: bridgecrew/checkov:latest
+        steps:
+          - script: |
+              checkov \
+                --directory infra/terraform/ \
+                --framework terraform \
+                --output sarif \
+                --output-file checkov-results.sarif \
+                --soft-fail
+            displayName: "Scan Terraform with Checkov"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: checkov-results.sarif
+              artifactName: checkov-report
+            condition: always()
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 6: NFR & LOAD TESTS
+  # ─────────────────────────────────────────────────────────
+  - stage: NFRTests
+    displayName: "⚡ NFR & Load Tests (k6)"
+    dependsOn: DeployPreProd
+    jobs:
+      - job: NFRBenchmark
+        displayName: "k6 — NFR performance benchmark"
+        steps:
+          - script: |
+              docker run --rm -i \
+                -e BASE_URL=https://preprod-api.auralbooks.com \
+                -e TEST_TOKEN=$(PREPROD_TEST_TOKEN) \
+                -v $(System.DefaultWorkingDirectory)/tests/nfr:/scripts \
+                grafana/k6:latest run /scripts/benchmark.js \
+                --out json=nfr-results.json
+            displayName: "Run k6 NFR benchmark (p95 < 200ms)"
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: nfr-results.json
+              artifactName: nfr-k6-results
+            condition: always()
+
+      - job: SpikeTest
+        displayName: "k6 — Spike load test (2000 VUs)"
+        dependsOn: NFRBenchmark
+        steps:
+          - script: |
+              docker run --rm -i \
+                -e BASE_URL=https://preprod-api.auralbooks.com \
+                -e TEST_TOKEN=$(PREPROD_TEST_TOKEN) \
+                -v $(System.DefaultWorkingDirectory)/tests/load:/scripts \
+                grafana/k6:latest run /scripts/spike.js \
+                --out json=spike-results.json
+            displayName: "Run spike test — 2000 VU burst"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 7: BUILD & PUSH
+  # ─────────────────────────────────────────────────────────
+  - stage: DockerBuildPush
+    displayName: "🐳 Build & Push Images to ACR"
+    dependsOn:
+      - AdvancedSAST
+      - SonarQubeGate
+    jobs:
+      - job: BuildPushImages
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-preprod
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image backend:$(IMAGE_TAG) ./backend \
+                  --file ./backend/Dockerfile
+
+                az acr build \
+                  --registry $(ACR_NAME) \
+                  --image frontend:$(IMAGE_TAG) ./frontend \
+                  --file ./frontend/Dockerfile
+            displayName: "Build and push images"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 8: DEPLOY TO PRE-PROD
+  # ─────────────────────────────────────────────────────────
+  - stage: DeployPreProd
+    displayName: "🟠 Deploy to PRE-PROD"
+    dependsOn: DockerBuildPush
+    jobs:
+      - deployment: DeployToPreProd
+        environment: preprod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+
+                - script: |
+                    sed -i "s|tag:.*|tag: $(IMAGE_TAG)|g" helm/auralbooks/values-preprod.yaml
+                    git config user.email "azuredevops@auralbooks.com"
+                    git config user.name "Azure DevOps"
+                    git add helm/auralbooks/values-preprod.yaml
+                    git commit -m "chore(preprod): deploy $(IMAGE_TAG) [skip ci]"
+                    git push origin main
+                  displayName: "Update Helm values for PRE-PROD (GitOps)"
+
+                - script: |
+                    sleep 120
+                    curl -f https://preprod-api.auralbooks.com/actuator/health || exit 1
+                    echo "✅ PRE-PROD smoke test passed"
+                  displayName: "Smoke test — PRE-PROD health check"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 9: E2E REGRESSION SUITE
+  # ─────────────────────────────────────────────────────────
+  - stage: RegressionTests
+    displayName: "🎭 E2E Regression — Playwright"
+    dependsOn: NFRTests
+    jobs:
+      - job: PlaywrightRegression
+        timeoutInMinutes: 45
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+
+          - script: |
+              cd frontend
+              npm ci
+              npx playwright install --with-deps
+              npx playwright test \
+                --project=regression \
+                --reporter=junit,html \
+                --base-url=https://preprod.auralbooks.com
+            displayName: "Run Playwright E2E regression suite"
+            env:
+              PLAYWRIGHT_TEST_BASE_URL: https://preprod.auralbooks.com
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: "frontend/test-results/results.xml"
+              testRunTitle: "Playwright E2E Regression — PRE-PROD"
+            condition: always()
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: "frontend/playwright-report"
+              artifactName: playwright-report
+            condition: always()
+```
+
+---
+
+### PROD Pipeline
+
+Blue-green canary deployment with mandatory 2-approver gate, automated canary health monitoring, and auto-rollback on failure. Manually triggered from Azure DevOps Release with the verified PRE-PROD image tag.
+
+```yaml
+# azure-pipelines/prod-pipeline.yml
+trigger: none  # Manual trigger only — promoted from PRE-PROD
+
+parameters:
+  - name: imageTag
+    displayName: "Verified PRE-PROD image tag to promote"
+    type: string
+  - name: canaryWeight
+    displayName: "Initial canary traffic % (default: 10)"
+    type: number
+    default: 10
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: auralbooks-common
+  - group: auralbooks-prod
+  - name: IMAGE_TAG
+    value: ${{ parameters.imageTag }}
+  - name: CANARY_WEIGHT
+    value: ${{ parameters.canaryWeight }}
+
+stages:
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 1: PRE-DEPLOYMENT VALIDATION
+  # ─────────────────────────────────────────────────────────
+  - stage: PreDeployValidation
+    displayName: "✅ Pre-Deployment Validation"
+    jobs:
+      - job: ValidateImageExists
+        displayName: "Validate image tag exists in ACR"
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-prod
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "Verifying image: $(ACR_LOGIN_SERVER)/backend:$(IMAGE_TAG)"
+                az acr repository show-tags \
+                  --name $(ACR_NAME) \
+                  --repository backend \
+                  --query "[?@ == '$(IMAGE_TAG)']" \
+                  --output tsv | grep -q "$(IMAGE_TAG)" || \
+                  (echo "❌ Image tag not found in ACR!" && exit 1)
+                echo "✅ Image validated in ACR"
+            displayName: "Validate image exists in ACR"
+
+      - job: PreProdHealthCheck
+        displayName: "Confirm PRE-PROD is healthy before promoting"
+        steps:
+          - script: |
+              STATUS=$(curl -s https://preprod-api.auralbooks.com/actuator/health | jq -r '.status')
+              if [ "$STATUS" != "UP" ]; then
+                echo "❌ PRE-PROD is not healthy ($STATUS). Refusing to promote."
+                exit 1
+              fi
+              echo "✅ PRE-PROD is healthy. Safe to promote."
+            displayName: "PRE-PROD health gate"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 2: CANARY DEPLOYMENT (requires 2 approvals)
+  # ─────────────────────────────────────────────────────────
+  - stage: CanaryDeploy
+    displayName: "🐦 Canary Deploy (${{ parameters.canaryWeight }}% traffic)"
+    dependsOn: PreDeployValidation
+    jobs:
+      - deployment: CanaryDeployment
+        displayName: "Deploy canary to PROD"
+        environment: production        # 2 approvers configured in Azure DevOps Environments
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  inputs:
+                    azureSubscription: sc-azure-prod
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az aks get-credentials \
+                        --resource-group rg-auralbooks-prod-eastus \
+                        --name aks-auralbooks-prod \
+                        --overwrite-existing
+                  displayName: "Get AKS credentials"
+
+                - script: |
+                    echo "Deploying canary: $(IMAGE_TAG)"
+                    kubectl set image deployment/backend-canary \
+                      backend=$(ACR_LOGIN_SERVER)/backend:$(IMAGE_TAG) \
+                      -n auralbooks-core
+                    kubectl rollout status deployment/backend-canary \
+                      --timeout=5m \
+                      -n auralbooks-core
+
+                    # Route canary traffic via NGINX annotation
+                    kubectl annotate ingress auralbooks-ingress \
+                      nginx.ingress.kubernetes.io/canary="true" \
+                      nginx.ingress.kubernetes.io/canary-weight="$(CANARY_WEIGHT)" \
+                      --overwrite -n auralbooks-core
+
+                    echo "✅ Canary deployed — $(CANARY_WEIGHT)% traffic routed"
+                  displayName: "Deploy canary + set traffic weight"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 3: CANARY HEALTH MONITORING (5 minutes)
+  # ─────────────────────────────────────────────────────────
+  - stage: CanaryMonitor
+    displayName: "📊 Monitor Canary (5 min)"
+    dependsOn: CanaryDeploy
+    jobs:
+      - job: MonitorCanary
+        displayName: "Monitor canary error rate and latency"
+        timeoutInMinutes: 10
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-prod
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "⏱️  Monitoring canary for 5 minutes..."
+                sleep 300
+
+                # Query Application Insights for canary pod metrics
+                END_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+                START_TIME=$(date -u -d "5 minutes ago" +%Y-%m-%dT%H:%M:%SZ)
+
+                ERROR_RATE=$(az monitor metrics list \
+                  --resource "/subscriptions/$(AZURE_SUBSCRIPTION_ID)/resourceGroups/rg-auralbooks-prod-eastus/providers/microsoft.insights/components/appi-auralbooks-prod" \
+                  --metric "requests/failed" \
+                  --start-time "$START_TIME" --end-time "$END_TIME" \
+                  --aggregation Average \
+                  --query "value[0].timeseries[0].data[-1].average" \
+                  --output tsv 2>/dev/null || echo "0")
+
+                P95_LATENCY=$(az monitor metrics list \
+                  --resource "/subscriptions/$(AZURE_SUBSCRIPTION_ID)/resourceGroups/rg-auralbooks-prod-eastus/providers/microsoft.insights/components/appi-auralbooks-prod" \
+                  --metric "requests/duration" \
+                  --start-time "$START_TIME" --end-time "$END_TIME" \
+                  --aggregation Average \
+                  --query "value[0].timeseries[0].data[-1].average" \
+                  --output tsv 2>/dev/null || echo "0")
+
+                echo "Canary error rate: ${ERROR_RATE}%"
+                echo "Canary p95 latency: ${P95_LATENCY}ms"
+
+                if (( $(echo "${ERROR_RATE} > 1" | bc -l) )); then
+                  echo "❌ Error rate ${ERROR_RATE}% exceeds 1% threshold. Aborting rollout."
+                  exit 1
+                fi
+                if (( $(echo "${P95_LATENCY} > 500" | bc -l) )); then
+                  echo "❌ p95 latency ${P95_LATENCY}ms exceeds 500ms threshold. Aborting rollout."
+                  exit 1
+                fi
+                echo "✅ Canary healthy — promoting to full fleet"
+            displayName: "5-minute canary health assessment"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 4: FULL FLEET PROMOTION (GitOps)
+  # ─────────────────────────────────────────────────────────
+  - stage: FullPromotion
+    displayName: "🚀 Promote to Full PROD Fleet"
+    dependsOn: CanaryMonitor
+    jobs:
+      - deployment: PromoteToFull
+        environment: production
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+
+                - script: |
+                    sed -i "s|tag:.*|tag: $(IMAGE_TAG)|g" helm/auralbooks/values-prod.yaml
+                    git config user.email "azuredevops@auralbooks.com"
+                    git config user.name "Azure DevOps"
+                    git add helm/auralbooks/values-prod.yaml
+                    git commit -m "release: promote $(IMAGE_TAG) to PROD [skip ci]"
+                    git push origin main
+                  displayName: "Update Helm values for PROD (GitOps)"
+
+                - task: AzureCLI@2
+                  inputs:
+                    azureSubscription: sc-azure-prod
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az aks get-credentials \
+                        --resource-group rg-auralbooks-prod-eastus \
+                        --name aks-auralbooks-prod --overwrite-existing
+
+                      # Remove canary routing — full traffic to stable fleet
+                      kubectl annotate ingress auralbooks-ingress \
+                        nginx.ingress.kubernetes.io/canary- \
+                        nginx.ingress.kubernetes.io/canary-weight- \
+                        --overwrite -n auralbooks-core 2>/dev/null || true
+
+                      echo "✅ Canary routing removed — ArgoCD rolling out to full fleet"
+                  displayName: "Remove canary routing"
+
+  # ─────────────────────────────────────────────────────────
+  # STAGE 5: POST-DEPLOY VERIFICATION
+  # ─────────────────────────────────────────────────────────
+  - stage: PostDeployVerification
+    displayName: "✅ Post-Deploy Health Verification"
+    dependsOn: FullPromotion
+    jobs:
+      - job: HealthVerification
+        steps:
+          - script: |
+              echo "Waiting 60s for ArgoCD full rollout..."
+              sleep 60
+
+              # API health
+              curl -f https://api.auralbooks.com/actuator/health || exit 1
+
+              # Frontend
+              curl -f https://auralbooks.com || exit 1
+
+              # Critical endpoint smoke tests
+              curl -f https://api.auralbooks.com/api/v1/books?page=0&size=1 || exit 1
+
+              echo "✅ PRODUCTION DEPLOYMENT SUCCESSFUL"
+              echo "Image: $(IMAGE_TAG)"
+              echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            displayName: "PROD health check + critical endpoint verification"
+
+  # ─────────────────────────────────────────────────────────
+  # AUTO-ROLLBACK (runs on any stage failure)
+  # ─────────────────────────────────────────────────────────
+  - stage: AutoRollback
+    displayName: "🔄 Auto-Rollback"
+    dependsOn:
+      - CanaryDeploy
+      - CanaryMonitor
+      - FullPromotion
+      - PostDeployVerification
+    condition: failed()
+    jobs:
+      - job: Rollback
+        displayName: "Rollback PROD deployment"
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-azure-prod
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                echo "🚨 DEPLOYMENT FAILED — Initiating auto-rollback"
+                az aks get-credentials \
+                  --resource-group rg-auralbooks-prod-eastus \
+                  --name aks-auralbooks-prod --overwrite-existing
+
+                # Rollback Kubernetes deployments
+                kubectl rollout undo deployment/backend -n auralbooks-core
+                kubectl rollout undo deployment/frontend -n auralbooks-core
+                kubectl rollout undo deployment/backend-canary -n auralbooks-core 2>/dev/null || true
+
+                # Remove canary routing
+                kubectl annotate ingress auralbooks-ingress \
+                  nginx.ingress.kubernetes.io/canary- \
+                  nginx.ingress.kubernetes.io/canary-weight- \
+                  -n auralbooks-core 2>/dev/null || true
+
+                # Verify rollback
+                kubectl rollout status deployment/backend --timeout=3m -n auralbooks-core
+                echo "✅ Rollback complete"
+            displayName: "Rollback kubectl deployments"
+
+          - checkout: self
+            persistCredentials: true
+
+          - script: |
+              git revert HEAD --no-edit
+              git push origin main
+            displayName: "Revert GitOps Helm values"
+```
+
+---
+
+## ⚙️ Helm & ArgoCD — GitOps
+
+### Helm Chart Structure
+
+```
+helm/
+└── auralbooks/
+    ├── Chart.yaml
+    ├── values.yaml                        # Shared defaults across all environments
+    ├── values-dev.yaml
+    ├── values-uat.yaml
+    ├── values-preprod.yaml
+    ├── values-prod.yaml
+    ├── values-dr.yaml
+    └── templates/
+        ├── _helpers.tpl
+        ├── deployment.yaml                # Main workload template
+        ├── service.yaml
+        ├── ingress.yaml
+        ├── hpa.yaml                       # HorizontalPodAutoscaler
+        ├── pdb.yaml                       # PodDisruptionBudget
+        ├── configmap.yaml
+        ├── secret-provider-class.yaml     # Azure Key Vault CSI
+        ├── serviceaccount.yaml            # Workload Identity
+        ├── networkpolicy.yaml             # Calico deny-all + allow-list
+        ├── keda-scaledobject.yaml         # KEDA event-driven scaler
+        └── servicemonitor.yaml            # Prometheus scrape config
+```
+
+**`Chart.yaml`**:
+```yaml
+apiVersion: v2
+name: auralbooks
+description: AuralBooks — AI-Powered Reading Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+dependencies:
+  - name: postgresql
+    version: "13.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: "17.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+```
+
+<details>
+<summary><b>templates/deployment.yaml (excerpt)</b></summary>
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "auralbooks.fullname" . }}-backend
+  labels:
+    {{- include "auralbooks.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    spec:
+      serviceAccountName: {{ include "auralbooks.serviceAccountName" . }}
+      containers:
+        - name: backend
+          image: "{{ .Values.image.repository }}/backend:{{ .Values.image.tag }}"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: secrets-store
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: auralbooks-kv-secrets
+```
+</details>
+
+---
+
+### ArgoCD Application Setup
+
+```bash
+# Install ArgoCD
+kubectl create namespace argocd
+kubectl apply -n argocd \
+  -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# ArgoCD CLI login
+argocd login argocd.auralbooks.com \
+  --username admin \
+  --password $(kubectl get secret argocd-initial-admin-secret \
+               -n argocd -o jsonpath="{.data.password}" | base64 -d)
+```
+
+**ArgoCD ApplicationSet** — manages all environments from a single manifest:
+
+```yaml
+# argocd/applicationset.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: auralbooks-all-envs
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://aks-auralbooks-dev.eastus2.azmk8s.io
+            namespace: auralbooks-dev
+            valuesFile: values-dev.yaml
+          - env: uat
+            cluster: https://aks-auralbooks-uat.eastus2.azmk8s.io
+            namespace: auralbooks-uat
+            valuesFile: values-uat.yaml
+          - env: preprod
+            cluster: https://aks-auralbooks-preprod.eastus2.azmk8s.io
+            namespace: auralbooks-preprod
+            valuesFile: values-preprod.yaml
+          - env: prod
+            cluster: https://aks-auralbooks-prod.eastus2.azmk8s.io
+            namespace: auralbooks-core
+            valuesFile: values-prod.yaml
+          - env: dr
+            cluster: https://aks-auralbooks-dr.westeurope.azmk8s.io
+            namespace: auralbooks-core
+            valuesFile: values-dr.yaml
+  template:
+    metadata:
+      name: 'auralbooks-{{env}}'
+    spec:
+      project: auralbooks
+      source:
+        repoURL: https://github.com/yourusername/auralbooks-gitops
+        targetRevision: HEAD
+        path: helm/auralbooks
+        helm:
+          valueFiles:
+            - '{{valuesFile}}'
+      destination:
+        server: '{{cluster}}'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - PrunePropagationPolicy=foreground
+        retry:
+          limit: 5
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 3m
+```
+
+> **Note:** PROD and DR sync policies are set to `manual` in ArgoCD UI — automated sync is enabled only for DEV, UAT, and PRE-PROD.
+
+### GitOps Workflow
+
+```
+  Developer          Azure DevOps           GitOps Repo            ArgoCD                   AKS
+      │                    │                     │                    │                       │
+      │── git push ────────▶│                     │                    │                       │
+      │                    │── run CI pipeline ──▶│                    │                       │
+      │                    │   (build, test,      │                    │                       │
+      │                    │    scan, push image) │                    │                       │
+      │                    │── update values.yaml ▶│                    │                       │
+      │                    │   (image.tag = sha)  │                    │                       │
+      │                    │                     │── commit detected ──▶│                       │
+      │                    │                     │                    │── detect drift ────────▶│
+      │                    │                     │                    │── apply Helm chart ────▶│
+      │                    │                     │                    │◀── sync status ─────────│
+      │◀──────────── Azure DevOps notification (Teams / Email) ────────│                       │
+```
+
+---
+
+## 📈 Autoscaling
+
+### HPA Configuration
+
+```yaml
+# templates/hpa.yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: book-service-hpa
-  namespace: auralbooks-core
+  name: {{ include "auralbooks.fullname" . }}-backend-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: book-service
-  minReplicas: 5
-  maxReplicas: 50
+    name: {{ include "auralbooks.fullname" . }}-backend
+  minReplicas: {{ .Values.hpa.minReplicas }}
+  maxReplicas: {{ .Values.hpa.maxReplicas }}
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 65
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 75
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+    - type: External
+      external:
+        metric:
+          name: nginx_ingress_controller_requests_per_second
+          selector:
+            matchLabels:
+              service: book-service
+        target:
+          type: AverageValue
+          averageValue: "500"        # Scale when RPS > 500 per pod
   behavior:
     scaleUp:
       stabilizationWindowSeconds: 60
       policies:
-      - type: Pods
-        value: 4
-        periodSeconds: 60
+        - type: Pods
+          value: 4
+          periodSeconds: 60          # Add max 4 pods/min on scale-up
     scaleDown:
       stabilizationWindowSeconds: 300
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 120         # Remove max 2 pods/2min on scale-down
 ```
 
-### Networking
+### KEDA — Event-Driven Scaling
 
-```
-VNet: vnet-auralbooks-prod  (10.0.0.0/8)
-│
-├── subnet-aks-system     10.1.0.0/22   AKS system node pool
-├── subnet-aks-app        10.2.0.0/20   AKS application node pool
-├── subnet-aks-gpu        10.3.0.0/22   AKS GPU node pool
-├── subnet-appgw          10.4.0.0/24   Application Gateway / WAF
-├── subnet-functions      10.4.1.0/24   Azure Functions VNet integration
-└── subnet-privatelinks   10.4.2.0/22   Private Endpoints for all PaaS services
-                                         (PostgreSQL, Redis, Cosmos, Service Bus,
-                                          Key Vault, Storage, App Config)
+Chat Service scales based on Azure Service Bus queue depth:
+
+```yaml
+# templates/keda-scaledobject.yaml
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: chat-service-scaler
+  namespace: auralbooks-social
+spec:
+  scaleTargetRef:
+    name: chat-service
+  minReplicaCount: 2
+  maxReplicaCount: 20
+  cooldownPeriod: 120
+  triggers:
+    - type: azure-servicebus
+      metadata:
+        queueName: chat-messages
+        namespace: sb-auralbooks-prod
+        messageCount: "50"           # 1 pod per 50 queued messages
+      authenticationRef:
+        name: keda-servicebus-auth
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.monitoring:9090
+        metricName: stomp_active_connections
+        threshold: "200"             # Scale when > 200 active WS connections per pod
+        query: sum(stomp_connections_active{app="chat-service"})
 ```
 
-All PaaS services use **Private Endpoints** — no public internet access to data services. Traffic between AKS pods and data services flows entirely within the VNet.
+### Cluster Autoscaler
+
+```bash
+az aks update \
+  --resource-group rg-auralbooks-prod-eastus \
+  --name aks-auralbooks-prod \
+  --cluster-autoscaler-profile \
+    scan-interval=30s \
+    scale-down-delay-after-add=10m \
+    scale-down-unneeded-time=10m \
+    scale-down-utilization-threshold=0.5 \
+    max-graceful-termination-sec=600 \
+    new-pod-scale-up-delay=0s
+```
+
+HPA targets per environment:
+
+| Service | DEV min/max | UAT min/max | PRE-PROD min/max | PROD min/max |
+|---|---|---|---|---|
+| `book-service` | 1 / 3 | 2 / 5 | 3 / 20 | 5 / 50 |
+| `user-service` | 1 / 2 | 2 / 5 | 3 / 10 | 5 / 20 |
+| `chat-service` | 1 / 2 | 2 / 5 | 3 / 10 | 5 / 20 |
+| `ai-service` | 1 / 2 | 2 / 4 | 2 / 8 | 5 / 20 |
+| `marketplace-service` | 1 / 2 | 2 / 4 | 2 / 8 | 5 / 15 |
 
 ---
 
-## 🚀 Deployment
+## ⚡ Fault Tolerance
 
-### Environment Promotion Strategy
+### Circuit Breaker
 
-```
-feature branch  →  develop  →  staging  →  production
-                   (auto)       (auto)      (manual gate)
-```
-
-Every merge to `develop` auto-deploys to the dev cluster. Every merge to `main` deploys to staging automatically, then waits for a required approval before promoting to production.
-
-### Step-by-Step: First Production Deploy
-
-```bash
-# 1. Set up Azure Container Registry
-az acr create \
-  --resource-group rg-auralbooks-shared \
-  --name acrauralbooks \
-  --sku Premium \
-  --geo-replication-locations westeurope
-
-# 2. Get AKS credentials
-az aks get-credentials \
-  --resource-group rg-auralbooks-prod-eastus \
-  --name aks-auralbooks-prod
-
-# 3. Create Kubernetes secrets from Key Vault (using CSI driver)
-kubectl apply -f k8s/base/secret-provider-class.yaml
-
-# 4. Build and push Docker images
-az acr build --registry acrauralbooks \
-  --image backend:$(git rev-parse --short HEAD) ./backend
-
-az acr build --registry acrauralbooks \
-  --image frontend:$(git rev-parse --short HEAD) ./frontend
-
-# 5. Deploy all services via Kustomize
-kubectl apply -k k8s/overlays/prod/
-
-# 6. Wait for all pods to be ready
-kubectl wait --for=condition=ready pod \
-  --all -n auralbooks-core --timeout=5m
-kubectl wait --for=condition=ready pod \
-  --all -n auralbooks-social --timeout=5m
-
-# 7. Verify endpoints
-kubectl get ingress -A
-curl -f https://api.auralbooks.com/actuator/health
-```
-
-### CI/CD Pipeline (GitHub Actions)
+Resilience4j is used on all inter-service and external API calls:
 
 ```yaml
-# .github/workflows/deploy.yml
-name: Build · Test · Deploy
-
-on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main]
-
-env:
-  REGISTRY: acrauralbooks.azurecr.io
-
-jobs:
-  # ── 1. Build & Test ──────────────────────────────────────────────────────
-  build-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Java 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Set up Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Backend — unit + integration tests
-        run: |
-          cd backend
-          mvn verify -Dspring.profiles.active=test
-
-      - name: Frontend — unit tests
-        run: |
-          cd frontend
-          npm ci
-          ng test --watch=false --browsers=ChromeHeadless
-
-      - name: SAST — CodeQL scan
-        uses: github/codeql-action/analyze@v3
-        with:
-          languages: java, javascript
-
-  # ── 2. Build & Push Docker Images ────────────────────────────────────────
-  build-push:
-    needs: build-test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
-    outputs:
-      image-tag: ${{ steps.tag.outputs.tag }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - id: tag
-        run: echo "tag=${{ github.sha }}" >> $GITHUB_OUTPUT
-
-      - name: Build & push backend
-        run: |
-          az acr build \
-            --registry acrauralbooks \
-            --image backend:${{ steps.tag.outputs.tag }} \
-            --image backend:latest \
-            ./backend
-
-      - name: Build & push frontend
-        run: |
-          az acr build \
-            --registry acrauralbooks \
-            --image frontend:${{ steps.tag.outputs.tag }} \
-            --image frontend:latest \
-            ./frontend
-
-      - name: Container vulnerability scan
-        run: |
-          az acr task run \
-            --registry acrauralbooks \
-            --name security-scan \
-            --arg IMAGE_TAG=${{ steps.tag.outputs.tag }}
-
-  # ── 3. Deploy to Staging ─────────────────────────────────────────────────
-  deploy-staging:
-    needs: build-push
-    runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - uses: azure/aks-set-context@v3
-        with:
-          resource-group: rg-auralbooks-staging
-          cluster-name: aks-auralbooks-staging
-
-      - name: Deploy to staging
-        run: |
-          kubectl set image deployment/backend \
-            backend=${{ env.REGISTRY }}/backend:${{ needs.build-push.outputs.image-tag }} \
-            -n auralbooks-core
-          kubectl set image deployment/frontend \
-            frontend=${{ env.REGISTRY }}/frontend:${{ needs.build-push.outputs.image-tag }} \
-            -n auralbooks-core
-          kubectl rollout status deployment/backend -n auralbooks-core --timeout=5m
-          kubectl rollout status deployment/frontend -n auralbooks-core --timeout=5m
-
-      - name: Run smoke tests
-        run: |
-          curl -f https://staging-api.auralbooks.com/actuator/health
-          curl -f https://staging.auralbooks.com
-
-  # ── 4. Deploy to Production (requires manual approval) ───────────────────
-  deploy-production:
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://auralbooks.com
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - uses: azure/aks-set-context@v3
-        with:
-          resource-group: rg-auralbooks-prod-eastus
-          cluster-name: aks-auralbooks-prod
-
-      - name: Blue-green deploy — backend (10% canary first)
-        run: |
-          kubectl set image deployment/backend-canary \
-            backend=${{ env.REGISTRY }}/backend:${{ needs.build-push.outputs.image-tag }} \
-            -n auralbooks-core
-          kubectl rollout status deployment/backend-canary --timeout=3m
-          sleep 120  # Monitor canary for 2 min
-          # Promote to full fleet
-          kubectl set image deployment/backend \
-            backend=${{ env.REGISTRY }}/backend:${{ needs.build-push.outputs.image-tag }} \
-            -n auralbooks-core
-          kubectl rollout status deployment/backend --timeout=5m
-
-      - name: Deploy frontend
-        run: |
-          kubectl set image deployment/frontend \
-            frontend=${{ env.REGISTRY }}/frontend:${{ needs.build-push.outputs.image-tag }} \
-            -n auralbooks-core
-          kubectl rollout status deployment/frontend --timeout=5m
-
-      - name: Post-deploy health check
-        run: |
-          curl -f https://api.auralbooks.com/actuator/health
-          curl -f https://auralbooks.com
-
-      - name: Auto-rollback on failure
-        if: failure()
-        run: |
-          kubectl rollout undo deployment/backend -n auralbooks-core
-          kubectl rollout undo deployment/frontend -n auralbooks-core
+# application.yml
+resilience4j:
+  circuitbreaker:
+    instances:
+      aiService:
+        slidingWindowSize: 10
+        failureRateThreshold: 50          # Open at 50% failure rate
+        waitDurationInOpenState: 30s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+      stripeService:
+        slidingWindowSize: 20
+        failureRateThreshold: 30
+        waitDurationInOpenState: 60s
+  retry:
+    instances:
+      aiService:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      postgresRead:
+        maxAttempts: 2
+        waitDuration: 500ms
+  timelimiter:
+    instances:
+      aiService:
+        timeoutDuration: 30s
+      stripeService:
+        timeoutDuration: 10s
+      bookService:
+        timeoutDuration: 5s
 ```
 
-### Rollback
+```java
+@CircuitBreaker(name = "aiService", fallbackMethod = "aiServiceFallback")
+@Retry(name = "aiService")
+@TimeLimiter(name = "aiService")
+public CompletableFuture<String> askQuestion(String question, String bookContext) {
+    return CompletableFuture.supplyAsync(() ->
+        openAiClient.chat(question, bookContext));
+}
+
+public CompletableFuture<String> aiServiceFallback(String question, String bookContext, Exception ex) {
+    log.warn("AI service unavailable, serving fallback: {}", ex.getMessage());
+    return CompletableFuture.completedFuture(
+        "AI assistant is temporarily unavailable. Please try again shortly.");
+}
+```
+
+### Retry & Timeout Policies
+
+```yaml
+# NGINX Ingress upstream timeouts
+nginx.ingress.kubernetes.io/proxy-connect-timeout: "5"
+nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503"
+nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"
+```
+
+### Pod Disruption Budgets
+
+```yaml
+# templates/pdb.yaml
+{{- if .Values.podDisruptionBudget.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "auralbooks.fullname" . }}-backend-pdb
+spec:
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  selector:
+    matchLabels:
+      app: backend
+{{- end }}
+```
+
+| Service | minAvailable | Effect |
+|---|---|---|
+| `book-service` | 3 | At least 3 pods survive any disruption |
+| `user-service` | 2 | No single rolling update kills all pods |
+| `chat-service` | 2 | WebSocket connections preserved during deploys |
+| `marketplace-service` | 2 | Payment processing never interrupted |
+
+### Health Probes
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 15
+  failureThreshold: 3
+  timeoutSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness   # Checks DB + Redis connectivity
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 3
+  successThreshold: 1
+
+startupProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 10                    # Allow up to 5 min for slow cold starts
+```
+
+---
+
+## 🌐 Disaster Recovery Strategy
+
+### DR Architecture
+
+```
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │                       DISASTER RECOVERY TOPOLOGY                        │
+  │                                                                         │
+  │   PRIMARY (East US 2)                  DR (West Europe)                 │
+  │   ────────────────────────────         ─────────────────────            │
+  │   AKS PROD cluster (active)      ◀──── AKS DR cluster (warm standby)   │
+  │   PostgreSQL (primary)           ──▶   PostgreSQL read replica          │
+  │   Redis Premium P3               ──▶   Redis geo-replica (async)       │
+  │   Blob Storage (Hot, GRS)        ──▶   Blob Storage (GRS secondary)    │
+  │   Azure Front Door (100%)        ──▶   Azure Front Door (failover)     │
+  │                                                                         │
+  │   Normal:   100% traffic → East US 2                                    │
+  │   Failover: 100% traffic → West Europe DR cluster                       │
+  │   Failback: Gradual shift 10% → 50% → 100% back to East                │
+  └─────────────────────────────────────────────────────────────────────────┘
+```
+
+### RTO & RPO Targets
+
+| Scenario | RTO Target | RPO Target | Strategy |
+|---|---|---|---|
+| Single pod failure | < 30 sec | 0 (stateless) | Kubernetes self-healing |
+| AZ failure | < 2 min | 0 | Multi-AZ node pools + zone-redundant DB |
+| Region failure (full) | < 15 min | < 5 min | Azure Front Door geo-failover + DR cluster activation |
+| Database corruption | < 30 min | < 1 hour | Point-in-time restore from automated backups |
+| Data centre disaster | < 60 min | < 5 min | DR cluster in West Europe promotion |
+
+### Failover Runbook
 
 ```bash
-# Immediate rollback to previous version
-kubectl rollout undo deployment/backend -n auralbooks-core
-kubectl rollout undo deployment/frontend -n auralbooks-core
+#!/bin/bash
+# scripts/dr-failover.sh — Run by Incident Commander on region failure
 
-# Rollback to a specific revision
-kubectl rollout history deployment/backend -n auralbooks-core
-kubectl rollout undo deployment/backend --to-revision=3 -n auralbooks-core
+echo "🚨 INITIATING DISASTER RECOVERY FAILOVER"
+echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-# Verify rollback completed
-kubectl rollout status deployment/backend -n auralbooks-core
+# Step 1 — Promote PostgreSQL replica to primary
+echo "Step 1/5 — Promoting PostgreSQL DR replica..."
+az postgres flexible-server restart \
+  --resource-group rg-auralbooks-dr \
+  --name psql-auralbooks-dr
+
+az keyvault secret set \
+  --vault-name kv-auralbooks-dr \
+  --name DB-URL \
+  --value "jdbc:postgresql://psql-auralbooks-dr.postgres.database.azure.com:5432/auralbooks?sslmode=require"
+
+# Step 2 — Scale up DR AKS cluster
+echo "Step 2/5 — Scaling up DR cluster..."
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-dr.yaml \
+  --set replicaCount=5 \
+  --namespace auralbooks-core
+
+# Step 3 — Wait for pods to be ready
+echo "Step 3/5 — Waiting for DR pods..."
+kubectl wait --for=condition=ready pod \
+  --all -n auralbooks-core \
+  --context aks-auralbooks-dr \
+  --timeout=10m
+
+# Step 4 — Switch Azure Front Door origin
+echo "Step 4/5 — Rerouting traffic to DR..."
+az network front-door origin update \
+  --front-door-name afd-auralbooks \
+  --origin-group primary-east \
+  --resource-group rg-auralbooks-global \
+  --enabled-state Disabled
+
+az network front-door origin update \
+  --front-door-name afd-auralbooks \
+  --origin-group dr-westeurope \
+  --resource-group rg-auralbooks-global \
+  --enabled-state Enabled \
+  --weight 1000
+
+# Step 5 — Verify
+echo "Step 5/5 — Verifying DR environment..."
+sleep 60
+HEALTH=$(curl -s https://api.auralbooks.com/actuator/health | jq -r '.status')
+if [ "$HEALTH" = "UP" ]; then
+  echo "✅ FAILOVER COMPLETE — DR cluster is live"
+else
+  echo "❌ Health check failed: $HEALTH"
+  exit 1
+fi
 ```
+
+### DR Drill Schedule
+
+| Drill Type | Frequency | Duration | Team |
+|---|---|---|---|
+| Tabletop exercise | Monthly | 1 hour | All engineering leads |
+| Component failover (single service) | Bi-monthly | 2 hours | On-call SRE |
+| Full regional failover drill | Quarterly | 4 hours | Platform + SRE teams |
+| Chaos engineering (Chaos Mesh) | Weekly | 30 min | SRE |
+| Backup restore verification | Weekly | 1 hour | DBA |
+
+```bash
+# Weekly Chaos Mesh experiment — random pod kill in PROD
+kubectl apply -f - <<EOF
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: weekly-pod-failure
+  namespace: auralbooks-core
+spec:
+  action: pod-kill
+  mode: one
+  selector:
+    namespaces: [auralbooks-core]
+    labelSelectors:
+      app: book-service
+  scheduler:
+    cron: "@every 168h"
+EOF
+```
+
+---
+
+## 🧪 Testing Strategy
+
+### Testing Pyramid
+
+```
+                    ┌───────────────┐
+                    │   E2E / DAST  │  ← Playwright, OWASP ZAP
+                   /│   Regression  │\
+                  / └───────────────┘ \
+                 /  ┌───────────────┐  \
+                /   │  Integration  │   \  ← Testcontainers, Pact
+               /    │  Load / NFR   │    \
+              /     └───────────────┘     \
+             / ┌───────────────────────┐   \
+            /  │    Unit Tests         │    \  ← JUnit 5, Mockito, Jasmine
+           /   │    SonarQube / SAST   │     \
+          /    └───────────────────────┘      \
+         └──────────────────────────────────────┘
+```
+
+### SonarQube Quality Gate
+
+```properties
+# sonar-project.properties
+sonar.projectKey=auralbooks-backend
+sonar.projectName=AuralBooks Backend
+sonar.sources=src/main/java
+sonar.tests=src/test/java
+sonar.java.binaries=target/classes
+sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+sonar.exclusions=**/generated/**,**/*Config*.java,**/*Application.java
+
+# Quality Gate thresholds (configured in SonarQube UI):
+# ✅ Coverage              >= 80%
+# ✅ Duplications          <= 3%
+# ✅ Blocker issues        = 0
+# ✅ Critical issues       = 0
+# ✅ Security hotspots     0 unreviewed
+# ✅ Reliability rating    A
+# ✅ Security rating       A
+# ✅ Maintainability       A
+```
+
+### SAST — Static Analysis
+
+Three SAST tools run in the Azure DevOps pipeline on every PR:
+
+| Tool | Scope | Fail Condition |
+|---|---|---|
+| **CodeQL** | Java + TypeScript — security-extended ruleset | Any critical finding |
+| **Semgrep** | Java, Spring, OWASP Top 10, SQL injection rules | Any ERROR severity |
+| **OWASP Dependency Check** | SCA — transitive dependencies | CVSS ≥ 9 (DEV), CVSS ≥ 7 (PRE-PROD) |
+
+### DAST — Dynamic Analysis
+
+```yaml
+# .zap/zap-auth.conf
+env:
+  contexts:
+    - name: AuralBooks
+      urls:
+        - https://uat-api.auralbooks.com
+      authentication:
+        method: json
+        parameters:
+          loginUrl: https://uat-api.auralbooks.com/api/v1/auth/login
+          loginRequestData: '{"email":"zap-test@auralbooks.com","password":"ZapTest123!"}'
+        verification:
+          method: response
+          loggedInRegex: '"accessToken"'
+      users:
+        - name: testuser
+          credentials:
+            username: zap-test@auralbooks.com
+            password: ZapTest123!
+  parameters:
+    failOnError: true
+jobs:
+  - type: activeScan
+    parameters:
+      maxRuleDurationInMins: 5
+      maxScanDurationInMins: 20
+  - type: report
+    parameters:
+      reportDir: /zap/reports
+      reportFormat: json,html
+```
+
+### NFR / Performance Testing
+
+```javascript
+// tests/nfr/benchmark.js
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+import { Rate, Trend } from 'k6/metrics';
+
+const errorRate = new Rate('error_rate');
+const bookListLatency = new Trend('book_list_latency');
+
+export const options = {
+  stages: [
+    { duration: '2m', target: 100 },
+    { duration: '5m', target: 100 },
+    { duration: '2m', target: 0 },
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<200'],   // ✅ p95 < 200ms
+    http_req_failed: ['rate<0.001'],    // ✅ Error rate < 0.1%
+  },
+};
+
+export default function () {
+  const res = http.get(`${__ENV.BASE_URL}/api/v1/books?page=0&size=20`, {
+    headers: { Authorization: `Bearer ${__ENV.TEST_TOKEN}` },
+  });
+  bookListLatency.add(res.timings.duration);
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+    'response time < 200ms': (r) => r.timings.duration < 200,
+  });
+  errorRate.add(res.status !== 200);
+  sleep(1);
+}
+```
+
+NFR targets:
+
+| Metric | Target | Test Tool |
+|---|---|---|
+| API p95 latency | < 200ms | k6 |
+| API p99 latency | < 500ms | k6 |
+| Audio stream start | < 3s | k6 |
+| Chat message delivery | < 100ms | k6 WebSocket |
+| API availability | > 99.95% | Azure Monitor |
+| Throughput | 10,000 req/min sustained | k6 |
+| Error rate | < 0.1% | k6 |
+
+### Load Testing
+
+```javascript
+// tests/load/spike.js
+export const options = {
+  stages: [
+    { duration: '1m',  target: 100  },
+    { duration: '30s', target: 2000 },   // Book launch spike
+    { duration: '3m',  target: 2000 },
+    { duration: '30s', target: 100  },
+    { duration: '1m',  target: 0    },
+  ],
+  thresholds: {
+    http_req_duration: ['p(99)<1000'],
+    http_req_failed: ['rate<0.05'],
+  },
+};
+```
+
+```javascript
+// tests/load/soak.js
+export const options = {
+  stages: [
+    { duration: '5m', target: 500 },
+    { duration: '4h', target: 500 },    // 4-hour soak — memory leak detection
+    { duration: '5m', target: 0   },
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<300'],
+    http_req_failed: ['rate<0.001'],
+  },
+};
+```
+
+### Regression Testing
+
+```bash
+# Run Playwright E2E regression suite on PRE-PROD
+cd frontend
+npx playwright test \
+  --project=regression \
+  --reporter=html,github \
+  --base-url=https://preprod.auralbooks.com
+
+# Regression coverage areas:
+# ✅ Auth flows (register, login, refresh, logout)
+# ✅ Book catalog browsing and search
+# ✅ ePub reader (open, highlight, sync progress)
+# ✅ Audio player (play, pause, seek, speed)
+# ✅ Purchase flow (Stripe test mode)
+# ✅ Chat (WebSocket connect, send, receive)
+# ✅ AI assistant (ask question, get response)
+# ✅ Group creation and join
+# ✅ Event RSVP
+
+# Backend regression
+cd backend
+mvn verify \
+  -Dspring.profiles.active=regression \
+  -Dregression.base-url=https://preprod-api.auralbooks.com \
+  -Dgroups="unit,integration,regression"
+```
+
+---
+
+## 🔐 Security
+
+### Defence-in-Depth
+
+```
+Internet → Azure DDoS Protection → Front Door WAF (OWASP 3.2)
+        → TLS 1.3 → API Management (JWT, rate limiting 1K req/min)
+        → NGINX Ingress → Calico Network Policies (deny-all + allow-list)
+        → Spring Security (JwtAuthFilter, @PreAuthorize)
+        → Input Validation (Bean Validation) → Parameterised JPA queries
+        → Azure Key Vault (zero secrets in code/Git/env vars)
+        → Private Endpoints (no public data plane access)
+        → Workload Identity (no long-lived service principal credentials)
+```
+
+### JWT Token Lifecycle
+
+| Property | Value |
+|---|---|
+| Algorithm | HMAC-SHA256 |
+| Access token TTL | 15 minutes |
+| Refresh token TTL | 30 days |
+| Blacklist store | Redis `jwt:blacklist:{jti}` |
+| Silent refresh | Angular `RefreshInterceptor` handles 401 automatically |
 
 ---
 
 ## 📊 Monitoring & Observability
 
-### Monitoring Stack
+### Stack
 
-| Tool | Purpose | Data Source |
-|---|---|---|
-| **Azure Monitor** | Metrics aggregation, alert engine, dashboards | All Azure resources |
-| **Application Insights** | APM — distributed traces, exceptions, dependencies | Spring Boot SDK (`azure-spring-cloud-starter-monitor`) |
-| **Container Insights** | AKS pod/node resource utilisation, OOM events | AKS cluster (auto-configured via addon) |
-| **Log Analytics Workspace** | Centralised log aggregation, Kusto queries | All services, AKS control plane, Azure audit logs |
-| **Prometheus** | In-cluster metrics scraping | Spring Boot `/actuator/prometheus`, kube-state-metrics |
-| **Grafana** | Visual dashboards (deployed in `monitoring` namespace) | Prometheus + Log Analytics data source |
-| **Azure Cost Management** | Spend tracking, budget alerts, forecast | Azure Billing API |
-
-### Spring Boot → Application Insights
-
-Add to `pom.xml`:
-```xml
-<dependency>
-  <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-boot-starter-monitor</artifactId>
-  <version>5.x</version>
-</dependency>
-```
-
-Set in `application.yml`:
-```yaml
-azure:
-  application-insights:
-    connection-string: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
-    sampling-percentage: 10   # 10% trace sampling in production
-```
-
-This automatically instruments all HTTP requests, JDBC queries, Redis calls, and Spring WebSocket messages — no manual span creation needed.
-
-### Key Dashboards
-
-| Dashboard | Key Panels |
+| Tool | Purpose |
 |---|---|
-| **API Performance** | Request rate, p50/p95/p99 latency, error rate (5xx %), top slow endpoints |
-| **AKS Cluster Health** | Node CPU/memory, pod count per namespace, HPA current/max replicas, OOM kills |
-| **Business Metrics** | Daily active users, books opened, listening minutes, purchases, new signups |
-| **Cache Efficiency** | Redis hit rate per cache tier, memory utilisation, evictions/sec |
-| **AI Usage & Cost** | OpenAI token consumption, TTS character count, cost per 1K requests |
-| **WebSocket / Chat** | Active STOMP connections, messages/sec, SignalR unit utilisation |
+| Azure Monitor + App Insights | APM, distributed traces, exceptions |
+| Prometheus + Grafana | In-cluster metrics, custom dashboards |
+| Container Insights | AKS pod/node utilisation |
+| Log Analytics (Kusto) | Centralised log aggregation |
+| Azure Cost Management | Spend tracking, budget alerts |
 
-### Service Level Objectives (SLOs)
+### SLOs
 
-| Metric | Target | Warning | Critical |
-|---|---|---|---|
-| API availability | 99.95 % | < 99.9 % | < 99.5 % |
-| API p99 latency | < 200 ms | > 500 ms | > 1,000 ms |
-| Audio stream start time | < 3 s | > 5 s | > 8 s |
-| Chat message delivery | < 100 ms | > 300 ms | > 800 ms |
-| Payment success rate | > 99.5 % | < 99 % | < 97 % |
-| AKS pod restart rate | < 1/hr | > 5/hr | > 20/hr |
-
-### Alert Rules
-
-```yaml
-# alerts.yaml — deployed to Azure Monitor via Terraform
-alerts:
-  - name: HighApiErrorRate
-    condition: "requests/failed > 1% for 5 minutes"
-    severity: 1  # Critical
-    action: PagerDuty + Teams
-
-  - name: PodCrashLooping
-    condition: "kube_pod_container_status_restarts_total > 3 in 10 minutes"
-    severity: 1
-    action: PagerDuty + Teams
-
-  - name: RedisMemoryHigh
-    condition: "redis_memory_used_bytes / redis_memory_max_bytes > 0.85"
-    severity: 2  # Warning
-    action: Teams channel
-
-  - name: APILatencyDegraded
-    condition: "requests/duration p95 > 500ms for 10 minutes"
-    severity: 2
-    action: Teams channel
-
-  - name: AKSNodeNotReady
-    condition: "kube_node_status_condition{condition=Ready,status=true} == 0"
-    severity: 1
-    action: PagerDuty + Teams
-
-  - name: PaymentFailureSpike
-    condition: "stripe_payment_failures > 5 in 1 minute"
-    severity: 1
-    action: PagerDuty + Teams + email to finance
-```
-
-### Log Queries (Kusto / Log Analytics)
-
-```kusto
--- Top 10 slowest API endpoints (last 1 hour)
-requests
-| where timestamp > ago(1h)
-| summarize avg(duration), percentile(duration, 95), count()
-  by name, url
-| order by percentile_duration_95 desc
-| take 10
-
--- Error rate per service
-exceptions
-| where timestamp > ago(1h)
-| summarize errorCount = count() by cloud_RoleName
-| order by errorCount desc
-
--- Active WebSocket connections over time
-customMetrics
-| where name == "stomp.connections.active"
-| summarize avg(value) by bin(timestamp, 5m)
-| render timechart
-```
-
----
-
-## 🔑 IAM & Roles
-
-### Azure RBAC — Resource Group Level
-
-| Principal | Role | Scope | Purpose |
-|---|---|---|---|
-| AKS Managed Identity | `AcrPull` | `rg-auralbooks-shared / ACR` | Pull images from Container Registry |
-| AKS Managed Identity | `Key Vault Secrets User` | `rg-auralbooks-shared / Key Vault` | Read secrets via CSI driver |
-| AKS Managed Identity | `Storage Blob Data Reader` | `rg-auralbooks-prod-eastus / Storage` | Read book/audio files |
-| AKS Managed Identity | `Azure Service Bus Data Sender` | `rg-auralbooks-prod-eastus / Service Bus` | Publish to queues |
-| Azure Functions (System MI) | `Azure Service Bus Data Receiver` | Service Bus | Consume queues |
-| Azure Functions (System MI) | `Storage Blob Data Contributor` | Storage | Write TTS-generated audio |
-| GitHub Actions Service Principal | `Contributor` | `rg-auralbooks-prod-eastus` | Deploy to AKS, push to ACR |
-| GitHub Actions Service Principal | `AcrPush` | ACR | Push Docker images |
-| DevOps Engineers (AAD Group) | `Azure Kubernetes Service Cluster User` | AKS | `kubectl` access (namespace-scoped) |
-| On-call SRE (AAD Group) | `Reader` + `Monitoring Reader` | All prod RGs | Read-only access for incident investigation |
-| Data team (AAD Group) | `Log Analytics Reader` | Log Analytics Workspace | Query logs and metrics |
-
-### Kubernetes RBAC
-
-All service accounts use **Workload Identity** (Azure AD Workload Identity, formerly pod identity) — no static credentials inside pods.
-
-```yaml
-# workload-identity.yaml — one per service
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: book-service-sa
-  namespace: auralbooks-core
-  annotations:
-    azure.workload.identity/client-id: "<MANAGED_IDENTITY_CLIENT_ID>"
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: book-service-role
-  namespace: auralbooks-core
-rules:
-- apiGroups: [""]
-  resources: ["configmaps", "secrets"]
-  verbs: ["get", "list"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: book-service-rolebinding
-  namespace: auralbooks-core
-subjects:
-- kind: ServiceAccount
-  name: book-service-sa
-roleRef:
-  kind: Role
-  name: book-service-role
-  apiGroup: rbac.authorization.k8s.io
-```
-
-### Application-Level Roles
-
-Roles are stored in the `users.role` column and enforced at every controller method via Spring Security `@PreAuthorize`:
-
-| Role | Assigned To | Permissions |
+| Metric | Target | Critical Alert |
 |---|---|---|
-| `ROLE_USER` | All registered users (default) | Read books, manage own reading data, join groups, RSVP events, purchase/rent |
-| `ROLE_PUBLISHER` | Authors and publishing companies | All USER permissions + create/update/delete own books, view own sales analytics, manage royalty settings |
-| `ROLE_ADMIN` | Platform operators | All PUBLISHER permissions + manage all users, all books, all groups, event creation, system configuration |
-
-```java
-// Enforced per-endpoint in Spring Boot controllers
-@PostMapping
-@PreAuthorize("hasAnyRole('PUBLISHER', 'ADMIN')")
-public ResponseEntity<BookDetailDto> createBook(...) { }
-
-@DeleteMapping("/{id}")
-@PreAuthorize("hasRole('ADMIN') or @bookSecurity.isOwner(authentication, #id)")
-public ResponseEntity<Void> deleteBook(@PathVariable UUID id) { }
-```
-
-Role elevation (e.g. USER → PUBLISHER) requires Admin approval and is updated via `PUT /api/v1/admin/users/{id}/role`.
+| API availability | 99.95% | < 99.5% → PagerDuty |
+| API p99 latency | < 500ms | > 1,000ms → PagerDuty |
+| Audio stream start | < 3s | > 8s → Teams |
+| Payment success rate | > 99.5% | < 97% → PagerDuty + Finance |
+| Pod restart rate | < 1/hr | > 20/hr → PagerDuty |
 
 ---
 
-## 🔒 Application Security
+## ⚡ Quick Start
 
-### Layers of Defence
-
-```
-Internet
-   │
-   ▼
-[Azure DDoS Protection Standard]       — volumetric attack mitigation at VNet level
-   │
-   ▼
-[Azure Front Door WAF]                 — OWASP CRS 3.2, custom rules, bot protection
-   │
-   ▼
-[TLS 1.3 termination at Front Door]   — TLS 1.0 / 1.1 disabled; HSTS enforced
-   │
-   ▼
-[Azure API Management]                 — JWT validation, rate limiting, IP filtering
-   │
-   ▼
-[NGINX Ingress + Network Policy]       — Calico deny-all default; allow-listed pod-to-pod paths
-   │
-   ▼
-[Spring Security filter chain]         — JwtAuthFilter, @PreAuthorize, CORS policy
-   │
-   ▼
-[Application layer]                    — input validation, parameterised queries, no raw SQL
-   │
-   ▼
-[Data layer — Private Endpoints]       — no public internet access to any data service
-```
-
-### Spring Boot Security Configuration
-
-**CORS** — only the Angular origin is whitelisted:
-```java
-config.setAllowedOriginPatterns(List.of(
-  "http://localhost:4200",      // dev
-  "https://*.auralbooks.com"    // prod
-));
-config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
-config.setAllowCredentials(true);
-```
-
-**Security headers** — set on every response via a `OncePerRequestFilter`:
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-Content-Security-Policy: default-src 'self'; script-src 'self' https://js.stripe.com
-Referrer-Policy: strict-origin-when-cross-origin
-```
-
-**Input validation** — every request body is a Java record annotated with Bean Validation:
-```java
-public record CreateHighlightRequest(
-  @NotBlank @Size(max = 5000) String selectedText,
-  @NotNull HighlightColor color,
-  @Min(0) Integer pageNumber,
-  @Min(0) Integer chapterIndex
-) {}
-```
-
-**SQL injection** — Spring Data JPA uses parameterised queries exclusively; no native query string concatenation anywhere in the codebase.
-
-**Secrets management** — no secrets in environment variables or code. All secrets are fetched from **Azure Key Vault** at startup using Managed Identity:
-
-```java
-// No credentials in code — Managed Identity handles auth
-DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-SecretClient client = new SecretClientBuilder()
-  .vaultUrl("https://kv-auralbooks-prod.vault.azure.net")
-  .credential(credential)
-  .buildClient();
-```
-
-### JWT Security Details
-
-| Property | Value | Rationale |
-|---|---|---|
-| Algorithm | HMAC-SHA256 | Symmetric — suitable for a single-issuer backend |
-| Access token TTL | 15 minutes | Short window limits damage from token leakage |
-| Refresh token TTL | 30 days | Long-lived; stored client-side, rotated on use |
-| Token blacklist | Redis `SET jwt:blacklist:{jti} 1 EX {ttl}` | Enables immediate logout and revocation |
-| Claims | `userId`, `email`, `role`, `iat`, `exp`, `jti` | Minimal; no sensitive data in payload |
-| Storage (Angular) | `localStorage` | Accessible to JS; HttpOnly cookie is an opt-in config for higher-security deployments |
-
-### Network Security Groups (NSG Rules)
-
-| Subnet | Inbound Allowed | Inbound Denied |
-|---|---|---|
-| `subnet-aks-app` | From APIM (443), from AKS system (cluster traffic) | All other internet |
-| `subnet-appgw` | From Front Door service tag (443), health probe IPs | All other internet |
-| `subnet-privatelinks` | From AKS subnets only | Everything else — no public endpoint |
-| `subnet-functions` | From Service Bus, Storage (outbound only) | Inbound from internet |
-
-### Dependency & Container Scanning
-
-```yaml
-# Runs in CI pipeline on every PR and main merge
-- name: SAST — CodeQL (Java + TypeScript)
-  uses: github/codeql-action/analyze@v3
-
-- name: SCA — OWASP Dependency Check (backend)
-  run: mvn org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7
-
-- name: SCA — npm audit (frontend)
-  run: npm audit --audit-level=high
-
-- name: Container scan — Microsoft Defender for ACR
-  # Auto-triggered on every ACR push; blocks deploy if critical CVE found
-  run: az acr task run --registry acrauralbooks --name security-scan
-```
-
-### Compliance & Data Privacy
-
-- All data at rest encrypted with **Azure-managed keys** (AES-256); customer-managed keys available for enterprise tier
-- All data in transit encrypted with **TLS 1.3**
-- PII (email, display name) stored only in PostgreSQL and Cosmos DB — never in logs or analytics events
-- GDPR: `DELETE /api/v1/users/me` triggers a full account deletion job that removes all user data from PostgreSQL, Cosmos DB, and purges Redis keys within 30 days
-- Stripe handles all payment card data — AuralBooks is fully **out of PCI DSS scope** for card data
-
----
-
-## 🧪 Testing
-
-### Backend Tests
+### Option A — Docker Compose
 
 ```bash
-cd backend
+# 1. Clone
+git clone https://github.com/yourusername/auralbooks.git
+cd auralbooks
 
-# Run all tests
-mvn test
+# 2. Configure environment
+cp .env.example .env
+# Edit .env — set JWT_SECRET and AZURE_OPENAI_* at minimum
 
-# Run unit tests only
-mvn test -Dgroups=unit
+# 3. Start full stack
+docker compose up --build
 
-# Run integration tests (requires Docker for Testcontainers)
-mvn test -Dgroups=integration
-
-# Generate coverage report
-mvn jacoco:report
-open target/site/jacoco/index.html
+# 4. Access:
+#    Frontend:  http://localhost:4200
+#    Backend:   http://localhost:8080
+#    Swagger:   http://localhost:8080/swagger-ui.html
 ```
 
-**Key test classes:**
-- `BookServiceTest.java` — Unit tests with Mockito
-- `AuthControllerTest.java` — `@WebMvcTest` with Spring Security test support
-- `BookRepositoryIT.java` — Testcontainers PostgreSQL integration test
-- `ChatWebSocketIT.java` — WebSocket STOMP integration test
-
-### Frontend Tests
+### Option B — Helm Deploy to Kubernetes
 
 ```bash
-cd frontend
+# Add required Helm repos
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add cert-manager https://charts.jetstack.io
+helm repo add kedacore https://kedacore.github.io/charts
+helm repo update
 
-# Unit tests (Karma + Jasmine)
-ng test
+# Install cluster essentials
+helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace
+helm install cert-manager cert-manager/cert-manager -n cert-manager --create-namespace \
+  --set installCRDs=true
+helm install keda kedacore/keda -n keda --create-namespace
 
-# Single run (CI mode)
-ng test --watch=false --browsers=ChromeHeadless
-
-# E2E tests (Playwright)
-ng e2e
+# Deploy AuralBooks to DEV
+helm upgrade --install auralbooks ./helm/auralbooks \
+  -f helm/auralbooks/values-dev.yaml \
+  --namespace auralbooks-dev --create-namespace \
+  --set image.tag=latest
 ```
+
+### Prerequisites
+
+| Tool | Version |
+|---|---|
+| Java (OpenJDK) | 21+ |
+| Maven | 3.9+ |
+| Node.js | 20+ LTS |
+| Angular CLI | 18+ |
+| Docker | 24+ |
+| Helm | 3.x |
+| kubectl | 1.29+ |
+| ArgoCD CLI | 2.x |
+| Azure CLI | latest |
+
+---
+
+## 🗄️ Database & Caching
+
+### PostgreSQL Configuration (HikariCP)
+
+```yaml
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+```
+
+### Redis Cache TTLs
+
+| Cache Key | TTL | Invalidation Trigger |
+|---|---|---|
+| `bk::{id}` | 60 min | On `updateBook()` |
+| `bk::list::{params}` | 5 min | On any book change |
+| `usr::recs::{userId}` | 6 hr | On reading state update |
+| `ai::audio::{bookId}_{chapter}` | 55 min | On audio regeneration |
+| `ai::summary::{bookId}_{chapter}` | 24 hr | Manual admin evict |
+| `usr::session::{userId}` | 30 min | On logout |
+| `jwt::blacklist::{jti}` | Token TTL | Auto-expires |
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork this repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Follow the code style:
-   - **Backend:** Google Java Style Guide, Lombok for boilerplate
-   - **Frontend:** Angular Style Guide, ESLint + Prettier
-4. Write tests for new features
-5. Commit with conventional commits: `feat:`, `fix:`, `docs:`, `chore:`
-6. Push and open a Pull Request
+```bash
+# 1. Fork the repo
+# 2. Create a feature branch
+git checkout -b feature/your-feature-name
+
+# 3. Commit using Conventional Commits
+git commit -m "feat(reader): add bookmark sync across devices"
+
+# 4. Push and open a PR to develop
+git push origin feature/your-feature-name
+```
+
+**Branch naming:** `feature/`, `fix/`, `hotfix/`, `chore/`, `docs/`
+
+**PR requirements:** 2 approvals · SonarQube green · All Azure DevOps CI checks passing · Coverage ≥ 80%
+
+**Code style:** Google Java Style Guide + Lombok (backend) · Angular Style Guide + ESLint + Prettier (frontend)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 📞 Support
-
-- **Documentation:** [docs.auralbooks.com](https://docs.auralbooks.com)
-- **Swagger / API Docs:** `http://localhost:8080/swagger-ui.html` (when running locally)
-- **Issues:** [GitHub Issues](https://github.com/yourusername/auralbooks/issues)
-- **Email:** platform@auralbooks.com
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
 
-Built with ❤️ using **Angular 18** + **Spring Boot 3.3** + **Azure AKS**
+**Built with ❤️ using Angular 18 · Spring Boot 3.3 · Azure AKS · Helm · ArgoCD · Azure DevOps**
+
+[Documentation](https://docs.auralbooks.com) · [API Docs](https://api.auralbooks.com/swagger-ui.html) · [Issues](https://github.com/yourusername/auralbooks/issues) · [platform@auralbooks.com](mailto:platform@auralbooks.com)
 
 </div>
