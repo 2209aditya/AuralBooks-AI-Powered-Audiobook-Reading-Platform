@@ -1,0 +1,9 @@
+parameters:
+  serviceName: ''
+
+steps:
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'backend/${{ parameters.serviceName }}/pom.xml'
+      goals: 'clean package'
+      publishJUnitResults: true

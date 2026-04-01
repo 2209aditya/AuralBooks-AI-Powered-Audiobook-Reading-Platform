@@ -1,0 +1,8 @@
+replicaCount: 10
+
+image:
+  tag: prod
+
+autoscaling:
+  minReplicas: 10
+  maxReplicas: 50

@@ -1,0 +1,31 @@
+trigger:
+  branches:
+    include:
+      - develop
+
+variables:
+  tag: dev
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - template: templates/steps-maven-build.yml
+            parameters:
+              serviceName: book-service
+
+          - template: templates/steps-sonarqube.yml
+
+          - template: templates/steps-docker-push.yml
+            parameters:
+              serviceName: book-service
+              tag: $(tag)
+
+  - stage: Deploy
+    jobs:
+      - job: Deploy
+        steps:
+          - template: templates/steps-helm-deploy.yml
+            parameters:
+              environment: dev

@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: auralbooks-monitor
+spec:
+  selector:
+    matchLabels:
+      app: auralbooks
+  endpoints:
+    - port: http
+      interval: 15s

@@ -1,0 +1,13 @@
+parameters:
+  serviceName: ''
+  tag: ''
+
+steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'acr-connection'
+      repository: 'auralbooks/${{ parameters.serviceName }}'
+      command: 'buildAndPush'
+      Dockerfile: 'backend/${{ parameters.serviceName }}/Dockerfile'
+      tags: |
+        ${{ parameters.tag }}

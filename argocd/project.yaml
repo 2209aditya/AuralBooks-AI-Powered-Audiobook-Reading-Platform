@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: auralbooks
+  namespace: argocd
+spec:
+  description: AuralBooks Project
+
+  sourceRepos:
+    - '*'
+
+  destinations:
+    - namespace: auralbooks
+      server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'

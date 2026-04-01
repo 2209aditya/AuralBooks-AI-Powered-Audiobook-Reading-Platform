@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ai-service
+
+azure:
+  openai:
+    endpoint: https://your-openai-endpoint
+    key: your-key
+
+  tts:
+    endpoint: https://your-tts-endpoint
+    key: your-key

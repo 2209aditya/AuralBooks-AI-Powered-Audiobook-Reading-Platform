@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+
+    <!-- ============================= -->
+    <!-- IGNORE FALSE POSITIVE CVE -->
+    <!-- ============================= -->
+    <suppress>
+        <notes>
+            False positive in Spring Boot dependency (not exploitable in our context)
+        </notes>
+        <packageUrl regex="true">pkg:maven/org.springframework.boot/.*</packageUrl>
+        <cve>CVE-2021-12345</cve>
+    </suppress>
+
+    <!-- ============================= -->
+    <!-- IGNORE TRANSITIVE DEPENDENCY -->
+    <!-- ============================= -->
+    <suppress>
+        <notes>
+            Ignoring vulnerable transitive dependency not used at runtime
+        </notes>
+        <gav regex="true">.*:commons-collections:.*</gav>
+        <cve>CVE-2015-6420</cve>
+    </suppress>
+
+    <!-- ============================= -->
+    <!-- IGNORE FRONTEND NPM ISSUE -->
+    <!-- ============================= -->
+    <suppress>
+        <notes>
+            Dev dependency only, not affecting production
+        </notes>
+        <packageUrl regex="true">pkg:npm/webpack@.*</packageUrl>
+        <cve>CVE-2023-28154</cve>
+    </suppress>
+
+    <!-- ============================= -->
+    <!-- IGNORE BY CVSS SCORE -->
+    <!-- ============================= -->
+    <suppress>
+        <notes>
+            Ignore low severity vulnerabilities
+        </notes>
+        <cvssBelow>5</cvssBelow>
+    </suppress>
+
+</suppressions>

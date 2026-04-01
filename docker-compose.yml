@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+
+  # 🗄️ PostgreSQL
+  postgres:
+    image: postgres:16
+    container_name: auralbooks-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: auralbooks
+      POSTGRES_USER: auralbooks
+      POSTGRES_PASSWORD: auralbooks
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # ⚡ Redis
+  redis:
+    image: redis:7
+    container_name: auralbooks-redis
+    ports:
+      - "6379:6379"
+
+  # 📚 Book Service
+  book-service:
+    build: ./backend/book-service
+    container_name: book-service
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8080:8080"
+
+  # 👤 User Service
+  user-service:
+    build: ./backend/user-service
+    container_name: user-service
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8081:8081"
+
+  # 🤖 AI Service
+  ai-service:
+    build: ./backend/ai-service
+    container_name: ai-service
+    env_file:
+      - .env
+    ports:
+      - "8082:8082"
+
+  # 💬 Chat Service
+  chat-service:
+    build: ./backend/chat-service
+    container_name: chat-service
+    env_file:
+      - .env
+    ports:
+      - "8083:8083"
+
+  # 🛒 Marketplace Service
+  marketplace-service:
+    build: ./backend/marketplace-service
+    container_name: marketplace-service
+    env_file:
+      - .env
+    ports:
+      - "8084:8084"
+
+  # 🎯 Event Service
+  event-service:
+    build: ./backend/event-service
+    container_name: event-service
+    env_file:
+      - .env
+    ports:
+      - "8085:8085"
+
+  # 🌐 Frontend (Angular + NGINX)
+  frontend:
+    build: ./frontend
+    container_name: auralbooks-frontend
+    ports:
+      - "4200:80"
+
+volumes:
+  pgdata:

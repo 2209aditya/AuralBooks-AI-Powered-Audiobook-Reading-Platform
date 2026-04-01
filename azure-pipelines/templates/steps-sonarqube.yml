@@ -1,0 +1,13 @@
+steps:
+  - task: SonarQubePrepare@5
+    inputs:
+      SonarQube: 'sonarqube-service'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'auralbooks'
+
+  - task: SonarQubeAnalyze@5
+
+  - task: SonarQubePublish@5
+    inputs:
+      pollingTimeoutSec: '300'

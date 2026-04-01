@@ -1,0 +1,5 @@
+steps:
+  - script: |
+      echo "Running smoke tests..."
+      curl -f http://auralbooks-service/actuator/health || exit 1
+    displayName: 'Smoke Test'
