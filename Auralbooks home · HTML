@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AuralBooks — AI-Powered Audiobook & Reading Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --ink: #0d0c0a;
+  --paper: #f5f0e8;
+  --amber: #d4860a;
+  --amber-light: #f0a830;
+  --amber-glow: rgba(212,134,10,0.18);
+  --cream: #ede8dc;
+  --muted: #6b6557;
+  --border: rgba(212,134,10,0.25);
+  --glass: rgba(13,12,10,0.55);
+  --white: #fff;
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body: 'DM Sans', sans-serif;
+  --ff-mono: 'DM Mono', monospace;
+}
+
+/* ─── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── CUSTOM CURSOR ──────────────────────────────────── */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--amber);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s, width 0.2s, height 0.2s, opacity 0.2s;
+  mix-blend-mode: normal;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--amber);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  opacity: 0.5;
+}
+body:hover .cursor { opacity: 1; }
+
+/* ─── NOISE OVERLAY ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s, background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  background: rgba(13,12,10,0.85);
+  backdrop-filter: blur(18px);
+  border-color: var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  border: 1.5px solid var(--amber);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.logo-mark::after {
+  content: '';
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 14px var(--amber-light);
+}
+.logo-text {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+.logo-text span { color: var(--amber); }
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--paper); }
+.nav-cta {
+  display: flex; gap: 1rem;
+}
+.btn-ghost {
+  padding: 0.55rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--ff-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+.btn-primary {
+  padding: 0.55rem 1.6rem;
+  background: var(--amber);
+  border: 1px solid var(--amber);
+  border-radius: 2px;
+  color: var(--ink);
+  font-family: var(--ff-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  background: var(--amber-light);
+  box-shadow: 0 0 28px var(--amber-glow);
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 65% 50%, rgba(212,134,10,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,134,10,0.06) 0%, transparent 60%),
+    linear-gradient(165deg, #0d0c0a 0%, #171510 60%, #0d0c0a 100%);
+}
+/* Subtle grid lines */
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(212,134,10,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,134,10,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at 60% 50%, black 20%, transparent 70%);
+}
+
+.hero-left {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10rem 4rem 6rem 5rem;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--amber);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 4px var(--amber); }
+  50% { box-shadow: 0 0 14px var(--amber-light); }
+}
+.eyebrow-text {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.35s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-title .outline {
+  -webkit-text-stroke: 1.5px var(--paper);
+  color: transparent;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 440px;
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 1.5rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.65s forwards;
+}
+.btn-large {
+  padding: 0.9rem 2.2rem;
+  font-size: 0.9rem;
+}
+.hero-sub {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.hero-sub svg { width: 14px; height: 14px; color: var(--amber); }
+
+.hero-stats {
+  display: flex; gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.8s forwards;
+}
+.stat-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1;
+}
+.stat-num span { color: var(--amber); font-style: italic; }
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── HERO RIGHT — Book Visual ───────────────────────── */
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8rem 3rem 6rem;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.6s forwards;
+}
+.book-showcase {
+  position: relative;
+  width: 340px; height: 480px;
+}
+/* Main book card */
+.book-card {
+  position: absolute;
+  width: 240px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(212,134,10,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  transform: rotate(-4deg);
+  top: 30px; left: 20px;
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.book-card:hover { transform: rotate(0deg) translateY(-8px); }
+.book-cover {
+  width: 100%; height: 340px;
+  background: linear-gradient(145deg, #1a2535 0%, #0d1520 60%, #1a1008 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem;
+}
+.book-cover::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 200px;
+  background: radial-gradient(ellipse at 70% 30%, rgba(212,134,10,0.25), transparent 60%);
+}
+.book-spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 14px;
+  background: linear-gradient(180deg, #b3720a, #7a4c06);
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.book-cover-title {
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--paper);
+  position: relative; z-index: 1;
+  margin-bottom: 0.4rem;
+}
+.book-cover-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.55);
+  position: relative; z-index: 1;
+}
+.book-cover-deco {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  width: 48px; height: 48px;
+  border: 1px solid rgba(212,134,10,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--amber);
+  font-size: 1.3rem;
+}
+.book-meta {
+  background: #161410;
+  padding: 1rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.book-rating {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.78rem; color: var(--paper);
+}
+.stars { color: var(--amber); font-size: 0.7rem; letter-spacing: 0.05em; }
+.ai-badge {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: var(--amber-glow);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+/* Audio player card */
+.audio-card {
+  position: absolute;
+  right: -10px; bottom: 20px;
+  width: 220px;
+  background: rgba(20,18,14,0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+  animation: floatCard 4s ease-in-out infinite;
+}
+@keyframes floatCard {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.audio-card-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.audio-card-title {
+  font-family: var(--ff-display);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: var(--paper);
+}
+.audio-card-voice {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.audio-wave {
+  display: flex; align-items: center; gap: 2px;
+  height: 28px; margin-bottom: 0.9rem;
+}
+.wave-bar {
+  width: 3px;
+  background: var(--amber);
+  border-radius: 10px;
+  animation: waveAnim 1.2s ease-in-out infinite;
+}
+.wave-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+.wave-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { height: 24px; animation-delay: 0.3s; }
+.wave-bar:nth-child(5) { height: 18px; animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { height: 10px; animation-delay: 0.5s; }
+.wave-bar:nth-child(7) { height: 22px; animation-delay: 0.35s; }
+.wave-bar:nth-child(8) { height: 16px; animation-delay: 0.15s; }
+.wave-bar:nth-child(9) { height: 12px; animation-delay: 0.25s; }
+.wave-bar:nth-child(10) { height: 20px; animation-delay: 0.45s; }
+.wave-bar:nth-child(11) { height: 8px; animation-delay: 0.55s; }
+.wave-bar:nth-child(12) { height: 18px; animation-delay: 0.05s; }
+@keyframes waveAnim {
+  0%,100% { transform: scaleY(0.5); opacity: 0.6; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+.audio-controls {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.play-btn {
+  width: 32px; height: 32px;
+  background: var(--amber);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: none;
+}
+.play-btn svg { width: 12px; height: 12px; fill: var(--ink); margin-left: 2px; }
+.speed-badge {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: rgba(255,255,255,0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+.audio-progress {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+.progress-track {
+  flex: 1; height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 38%;
+  background: linear-gradient(90deg, var(--amber), var(--amber-light));
+  border-radius: 2px;
+}
+.progress-time {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+
+/* AI chat card */
+.ai-card {
+  position: absolute;
+  top: 0; right: 20px;
+  width: 180px;
+  background: rgba(20,18,14,0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  animation: floatCard 5s 1s ease-in-out infinite;
+}
+.ai-card-header {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.ai-avatar {
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, var(--amber), #c06800);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem;
+}
+.ai-name { font-size: 0.7rem; font-weight: 500; color: var(--paper); }
+.ai-msg {
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  padding: 0.6rem 0.7rem;
+  border-left: 2px solid var(--amber);
+}
+
+/* ─── SCROLL INDICATOR ───────────────────────────────── */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeIn 1s 1.4s forwards;
+}
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(180deg, var(--amber) 0%, transparent 100%);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ─── FEATURES SECTION ───────────────────────────────── */
+.section { position: relative; z-index: 2; padding: 8rem 5rem; }
+.section-inner { max-width: 1280px; margin: 0 auto; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.tag-line {
+  width: 32px; height: 1px;
+  background: var(--amber);
+}
+.tag-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.section-subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 4rem;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.feature-cell {
+  background: var(--ink);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.feature-cell::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 0% 100%, var(--amber-glow) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.feature-cell:hover { background: #111008; }
+.feature-cell:hover::before { opacity: 1; }
+.feature-icon {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  position: relative; z-index: 1;
+  background: rgba(212,134,10,0.07);
+  transition: border-color 0.3s, background 0.3s;
+}
+.feature-cell:hover .feature-icon {
+  border-color: var(--amber);
+  background: var(--amber-glow);
+}
+.feature-name {
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  position: relative; z-index: 1;
+  transition: color 0.3s;
+}
+.feature-cell:hover .feature-name { color: var(--amber); }
+.feature-desc {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--muted);
+  position: relative; z-index: 1;
+}
+.feature-tag {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: var(--amber-glow);
+  border: 1px solid rgba(212,134,10,0.2);
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+  position: relative; z-index: 1;
+}
+
+/* ─── HOW IT WORKS ───────────────────────────────────── */
+.hiw-section {
+  padding: 8rem 5rem;
+  background: #0a0908;
+  position: relative;
+  z-index: 2;
+}
+.hiw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.hiw-steps {
+  display: flex; flex-direction: column; gap: 0;
+}
+.step {
+  display: flex; gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  cursor: default;
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(212,134,10,0.15);
+  line-height: 1;
+  min-width: 50px;
+  transition: color 0.3s;
+}
+.step:hover .step-num { color: var(--amber); }
+.step-content { flex: 1; }
+.step-title {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+.step:hover .step-title { color: var(--amber); }
+.step-text {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* Mockup terminal */
+.terminal {
+  background: #0d0c0a;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(212,134,10,0.06);
+}
+.terminal-bar {
+  background: #141210;
+  padding: 0.8rem 1.2rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.t-dot { width: 10px; height: 10px; border-radius: 50%; }
+.t-dot:nth-child(1) { background: #ff5f57; }
+.t-dot:nth-child(2) { background: #ffbd2e; }
+.t-dot:nth-child(3) { background: #28ca42; }
+.terminal-title {
+  margin-left: auto; margin-right: auto;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.terminal-body { padding: 1.5rem; }
+.terminal-line {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  line-height: 2;
+  color: var(--muted);
+}
+.terminal-line .prompt { color: var(--amber); }
+.terminal-line .cmd { color: var(--paper); }
+.terminal-line .out { color: #5ea36a; }
+.terminal-line .dim { color: rgba(107,101,87,0.6); font-size: 0.7rem; }
+.chat-bubble {
+  margin-top: 1rem;
+  background: rgba(212,134,10,0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+.chat-q {
+  font-size: 0.78rem;
+  color: var(--paper);
+  margin-bottom: 0.6rem;
+}
+.chat-q::before {
+  content: 'You › ';
+  color: var(--amber);
+  font-weight: 500;
+}
+.chat-a {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.chat-a::before {
+  content: 'AuralAI › ';
+  color: #5ea36a;
+  font-weight: 500;
+}
+
+/* ─── TESTIMONIALS ───────────────────────────────────── */
+.testimonials {
+  padding: 8rem 5rem;
+  position: relative; z-index: 2;
+}
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.testi-card {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 2rem;
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.testi-card:hover {
+  border-color: var(--border);
+  transform: translateY(-4px);
+}
+.testi-stars { color: var(--amber); font-size: 0.75rem; margin-bottom: 1rem; }
+.testi-quote {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--paper);
+  margin-bottom: 1.5rem;
+}
+.testi-author {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.testi-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display);
+  font-size: 0.85rem;
+  color: var(--amber);
+  background: var(--amber-glow);
+}
+.testi-name { font-size: 0.82rem; font-weight: 500; color: var(--paper); }
+.testi-role { font-size: 0.72rem; color: var(--muted); }
+
+/* ─── CTA BANNER ─────────────────────────────────────── */
+.cta-section {
+  padding: 7rem 5rem;
+  position: relative; z-index: 2;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.cta-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; height: 200px;
+  background: radial-gradient(ellipse, rgba(212,134,10,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  position: relative; z-index: 1;
+}
+.cta-title em { font-style: italic; color: var(--amber); }
+.cta-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  position: relative; z-index: 1;
+}
+.cta-actions {
+  display: flex; justify-content: center; gap: 1rem;
+  flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.btn-xl {
+  padding: 1.05rem 2.8rem;
+  font-size: 0.92rem;
+  border-radius: 3px;
+}
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 4rem 5rem 3rem;
+  position: relative; z-index: 2;
+  max-width: 100%;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 4rem;
+  max-width: 1280px;
+  margin: 0 auto 3rem;
+}
+.footer-brand p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 0.8rem;
+  max-width: 280px;
+}
+.footer-col-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-links a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--paper); }
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 2rem;
+}
+.footer-copy { font-size: 0.75rem; color: var(--muted); }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 0.75rem; color: var(--muted); text-decoration: none; }
+.footer-legal a:hover { color: var(--paper); }
+.footer-status {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.72rem;
+  color: #5ea36a;
+}
+.status-dot {
+  width: 6px; height: 6px;
+  background: #5ea36a;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #5ea36a;
+  animation: pulse 2s infinite;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 10rem 4rem 6rem; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+  .hiw-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  .section, .hiw-section, .testimonials, .cta-section { padding: 5rem 1.5rem; }
+  footer { padding: 3rem 1.5rem 2rem; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Aural<span>Books</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#publishers">Publishers</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-ghost">Sign In</button>
+    <button class="btn-primary">Start Free</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-text">GPT-4o Powered · Neural TTS · 2M+ Readers</span>
+    </div>
+
+    <h1 class="hero-title">
+      Reading,<br/>
+      <em>reimagined</em><br/>
+      with <span class="outline">AI</span>
+    </h1>
+
+    <p class="hero-desc">
+      Every book becomes an immersive experience — AI narration in 25+ neural voices, an intelligent reading companion, real-time sync across all your devices.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary btn-large">Start Reading Free</button>
+      <button class="btn-ghost btn-large">Watch Demo</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">2M<span>+</span></span>
+        <span class="stat-label">Active Readers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">500<span>K</span></span>
+        <span class="stat-label">Titles Available</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">25<span>+</span></span>
+        <span class="stat-label">AI Voice Profiles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">99<span>.95%</span></span>
+        <span class="stat-label">Uptime SLA</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="book-showcase">
+      <!-- Main Book Card -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-spine"></div>
+          <div class="book-cover-deco">◈</div>
+          <div class="book-cover-title">The Midnight<br/>Library</div>
+          <div class="book-cover-author">Matt Haig</div>
+        </div>
+        <div class="book-meta">
+          <div class="book-rating">
+            <span class="stars">★★★★★</span>
+            <span>4.9</span>
+          </div>
+          <div class="ai-badge">
+            <span>✦</span> AI Audio
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Player Card -->
+      <div class="audio-card">
+        <div class="audio-card-label">Now Playing</div>
+        <div class="audio-card-title">The Midnight Library</div>
+        <div class="audio-card-voice">Aria Neural · Chapter 4</div>
+        <div class="audio-wave">
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+        </div>
+        <div class="audio-controls">
+          <div class="play-btn">
+            <svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg>
+          </div>
+          <span class="speed-badge">1.25×</span>
+        </div>
+        <div class="audio-progress">
+          <div class="progress-track"><div class="progress-fill"></div></div>
+          <span class="progress-time">18:42</span>
+        </div>
+      </div>
+
+      <!-- AI Chat Card -->
+      <div class="ai-card">
+        <div class="ai-card-header">
+          <div class="ai-avatar">✦</div>
+          <span class="ai-name">AuralAI</span>
+        </div>
+        <div class="ai-msg">
+          The theme of infinite possibility reflects Nora's journey through alternate lives…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ──────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><div class="tag-line"></div><span class="tag-label">Platform Features</span></div>
+      <h2 class="section-title">Everything you need<br/>to fall deep into books</h2>
+      <p class="section-subtitle">A complete reading ecosystem engineered for 2M+ concurrent users, combining AI intelligence with beautiful design.</p>
+    </div>
+
+    <div class="feature-grid reveal">
+      <div class="feature-cell">
+        <div class="feature-icon">📖</div>
+        <div class="feature-name">ePub & PDF Reader</div>
+        <p class="feature-desc">In-browser reader with Light, Sepia, and Dark themes. Full PWA support for offline reading on any device.</p>
+        <span class="feature-tag">Offline-Ready</span>
+      </div>
+      <div class="feature-cell">
+        <div class="feature-icon">🎙️</div>
+        <div class="feature-name">AI Neural Narration</div>
+        <p class="feature-desc">Azure Neural TTS with 25+ voices. Speed from 0.5× to 3.0×. Real-time cross-device audio position sync.</p>
+        <span class="feature-tag">25+ Voices</span>
+      </div>
+      <div class="feature-cell">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-name">Reading Assistant</div>
+        <p class="feature-desc">GPT-4o Q&A panel with full context-awareness. 10-turn conversation history per session. Powered by Azure OpenAI.</p>
+        <span class="feature-tag">GPT-4o</span>
+      </div>
+      <div class="feature-cell">
+        <div class="feature-icon">✨</div>
+        <div class="feature-name">Smart Highlights</div>
+        <p class="feature-desc">5-colour highlight system with server-side sync. Tap any highlight for an instant AI explanation of the passage.</p>
+        <span class="feature-tag">AI-Explained</span>
+      </div>
+      <div class="feature-cell">
+        <div class="feature-icon">👥</div>
+        <div class="feature-name">Reading Groups</div>
+        <p class="feature-desc">Genre-based communities up to 10,000 members. Real-time chat via WebSocket STOMP + Azure SignalR with typing indicators.</p>
+        <span class="feature-tag">10K Members</span>
+      </div>
+      <div class="feature-cell">
+        <div class="feature-icon">🔮</div>
+        <div class="feature-name">Personalised Picks</div>
+        <p class="feature-desc">ML-based recommendations refreshed every 6 hours. "Because you read X" labels surface exactly the right next read.</p>
+        <span class="feature-tag">ML-Powered</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ──────────────────────────────────── -->
+<section class="hiw-section" id="how">
+  <div class="hiw-grid">
+    <div class="reveal">
+      <div class="section-tag"><div class="tag-line"></div><span class="tag-label">How It Works</span></div>
+      <h2 class="section-title">Your book,<br/>your experience</h2>
+      <p class="section-subtitle" style="margin-bottom: 2rem;">From library to listening in seconds. Our AI does the heavy lifting.</p>
+
+      <div class="hiw-steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div class="step-content">
+            <div class="step-title">Browse & acquire</div>
+            <p class="step-text">Explore 500K+ titles. Purchase or rent with Stripe — SAS URL-enforced rental expiry keeps everything secure.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div class="step-content">
+            <div class="step-title">AI generates your audiobook</div>
+            <p class="step-text">Select a neural voice. Azure Neural TTS renders studio-quality narration chapter by chapter in the background.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div class="step-content">
+            <div class="step-title">Read, listen, ask anything</div>
+            <p class="step-text">Switch between reading and listening. Highlight passages. Ask AuralAI about themes, characters, or context in real time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div class="step-content">
+            <div class="step-title">Sync everywhere, discuss with others</div>
+            <p class="step-text">Progress syncs via WebSocket across all devices. Join reading groups, chat in real time, mention @auralai for inline insights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay: 0.2s;">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="t-dot"></div>
+          <div class="terminal-title">auralai — reading assistant</div>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line"><span class="prompt">→</span> <span class="cmd">Opening "The Midnight Library" · Chapter 4</span></div>
+          <div class="terminal-line"><span class="out">✓</span> <span class="cmd">Progress synced across 3 devices</span></div>
+          <div class="terminal-line"><span class="prompt">→</span> <span class="cmd">Switching to audio · Voice: Aria Neural</span></div>
+          <div class="terminal-line"><span class="out">✓</span> <span class="cmd">Audio position: 18:42 · Speed 1.25×</span></div>
+          <div class="terminal-line">&nbsp;</div>
+          <div class="terminal-line"><span class="dim">// AI Reading Assistant — GPT-4o</span></div>
+          <div class="chat-bubble">
+            <div class="chat-q">What does the library represent in this chapter?</div>
+            <div class="chat-a">The library is a metaphor for the infinite paths Nora could have taken. Each book represents an alternate version of her life — Haig uses it to explore regret, choice, and the idea that no life is entirely wasted if it contains moments of meaning...</div>
+          </div>
+          <div class="terminal-line" style="margin-top: 1rem;"><span class="out">✓</span> <span class="cmd">Highlight saved · 5 context passages indexed</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ───────────────────────────────────── -->
+<section class="testimonials" id="testimonials">
+  <div class="section-inner">
+    <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+      <div class="section-tag" style="justify-content: center;"><div class="tag-line"></div><span class="tag-label">Reader Stories</span><div class="tag-line"></div></div>
+      <h2 class="section-title">Loved by readers worldwide</h2>
+    </div>
+
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"The AI narration is indistinguishable from a professional audiobook. Aria Neural is my favourite voice — I've listened through three novels this month."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sophia Chen</div>
+            <div class="testi-role">Software Engineer · San Francisco</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"The reading group feature transformed my book club. Real-time chat while we all read the same chapter is something I never knew I needed."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Marcus Williams</div>
+            <div class="testi-role">Teacher · London</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"AuralAI explained symbolism in Dostoevsky that I'd missed after three readings. It's like having a literature professor in your pocket, available at midnight."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Priya Ramanathan</div>
+            <div class="testi-role">PhD Student · Bangalore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="reveal">
+    <h2 class="cta-title">Your next great read<br/>is <em>waiting</em></h2>
+    <p class="cta-sub">Join 2 million readers. Free to start — no credit card required.</p>
+    <div class="cta-actions">
+      <button class="btn-primary btn-xl">Create Free Account</button>
+      <button class="btn-ghost btn-xl">Explore Library</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration: none;">
+        <div class="logo-mark"></div>
+        <span class="logo-text">Aural<span>Books</span></span>
+      </a>
+      <p>AI-powered reading platform engineered for 2M+ concurrent readers. Built on Azure AKS with Spring Boot and Angular 18.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Product</div>
+      <ul class="footer-links">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">For Publishers</a></li>
+        <li><a href="#">API Docs</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Support</div>
+      <ul class="footer-links">
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Status Page</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 AuralBooks. All rights reserved.</span>
+    <div class="footer-status">
+      <div class="status-dot"></div>
+      All systems operational
+    </div>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── CURSOR ────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top  = my + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('button, a, .feature-cell, .step, .testi-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '16px';
+    cursor.style.height = '16px';
+    ring.style.width = '50px';
+    ring.style.height = '50px';
+    ring.style.opacity = '0.8';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px';
+    cursor.style.height = '10px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.opacity = '0.5';
+  });
+});
+
+// ─── NAV SCROLL ───────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ─── SCROLL REVEAL ────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
